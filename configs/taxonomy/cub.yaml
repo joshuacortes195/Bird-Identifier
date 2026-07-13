@@ -1,0 +1,603 @@
+name: cub200
+supercategory_default: bird
+classes:
+- idx: 0
+  class_id: '1'
+  common_name: Black footed Albatross
+- idx: 1
+  class_id: '2'
+  common_name: Laysan Albatross
+- idx: 2
+  class_id: '3'
+  common_name: Sooty Albatross
+- idx: 3
+  class_id: '4'
+  common_name: Groove billed Ani
+- idx: 4
+  class_id: '5'
+  common_name: Crested Auklet
+- idx: 5
+  class_id: '6'
+  common_name: Least Auklet
+- idx: 6
+  class_id: '7'
+  common_name: Parakeet Auklet
+- idx: 7
+  class_id: '8'
+  common_name: Rhinoceros Auklet
+- idx: 8
+  class_id: '9'
+  common_name: Brewer Blackbird
+- idx: 9
+  class_id: '10'
+  common_name: Red winged Blackbird
+- idx: 10
+  class_id: '11'
+  common_name: Rusty Blackbird
+- idx: 11
+  class_id: '12'
+  common_name: Yellow headed Blackbird
+- idx: 12
+  class_id: '13'
+  common_name: Bobolink
+- idx: 13
+  class_id: '14'
+  common_name: Indigo Bunting
+- idx: 14
+  class_id: '15'
+  common_name: Lazuli Bunting
+- idx: 15
+  class_id: '16'
+  common_name: Painted Bunting
+- idx: 16
+  class_id: '17'
+  common_name: Cardinal
+- idx: 17
+  class_id: '18'
+  common_name: Spotted Catbird
+- idx: 18
+  class_id: '19'
+  common_name: Gray Catbird
+- idx: 19
+  class_id: '20'
+  common_name: Yellow breasted Chat
+- idx: 20
+  class_id: '21'
+  common_name: Eastern Towhee
+- idx: 21
+  class_id: '22'
+  common_name: Chuck will Widow
+- idx: 22
+  class_id: '23'
+  common_name: Brandt Cormorant
+- idx: 23
+  class_id: '24'
+  common_name: Red faced Cormorant
+- idx: 24
+  class_id: '25'
+  common_name: Pelagic Cormorant
+- idx: 25
+  class_id: '26'
+  common_name: Bronzed Cowbird
+- idx: 26
+  class_id: '27'
+  common_name: Shiny Cowbird
+- idx: 27
+  class_id: '28'
+  common_name: Brown Creeper
+- idx: 28
+  class_id: '29'
+  common_name: American Crow
+- idx: 29
+  class_id: '30'
+  common_name: Fish Crow
+- idx: 30
+  class_id: '31'
+  common_name: Black billed Cuckoo
+- idx: 31
+  class_id: '32'
+  common_name: Mangrove Cuckoo
+- idx: 32
+  class_id: '33'
+  common_name: Yellow billed Cuckoo
+- idx: 33
+  class_id: '34'
+  common_name: Gray crowned Rosy Finch
+- idx: 34
+  class_id: '35'
+  common_name: Purple Finch
+- idx: 35
+  class_id: '36'
+  common_name: Northern Flicker
+- idx: 36
+  class_id: '37'
+  common_name: Acadian Flycatcher
+- idx: 37
+  class_id: '38'
+  common_name: Great Crested Flycatcher
+- idx: 38
+  class_id: '39'
+  common_name: Least Flycatcher
+- idx: 39
+  class_id: '40'
+  common_name: Olive sided Flycatcher
+- idx: 40
+  class_id: '41'
+  common_name: Scissor tailed Flycatcher
+- idx: 41
+  class_id: '42'
+  common_name: Vermilion Flycatcher
+- idx: 42
+  class_id: '43'
+  common_name: Yellow bellied Flycatcher
+- idx: 43
+  class_id: '44'
+  common_name: Frigatebird
+- idx: 44
+  class_id: '45'
+  common_name: Northern Fulmar
+- idx: 45
+  class_id: '46'
+  common_name: Gadwall
+- idx: 46
+  class_id: '47'
+  common_name: American Goldfinch
+- idx: 47
+  class_id: '48'
+  common_name: European Goldfinch
+- idx: 48
+  class_id: '49'
+  common_name: Boat tailed Grackle
+- idx: 49
+  class_id: '50'
+  common_name: Eared Grebe
+- idx: 50
+  class_id: '51'
+  common_name: Horned Grebe
+- idx: 51
+  class_id: '52'
+  common_name: Pied billed Grebe
+- idx: 52
+  class_id: '53'
+  common_name: Western Grebe
+- idx: 53
+  class_id: '54'
+  common_name: Blue Grosbeak
+- idx: 54
+  class_id: '55'
+  common_name: Evening Grosbeak
+- idx: 55
+  class_id: '56'
+  common_name: Pine Grosbeak
+- idx: 56
+  class_id: '57'
+  common_name: Rose breasted Grosbeak
+- idx: 57
+  class_id: '58'
+  common_name: Pigeon Guillemot
+- idx: 58
+  class_id: '59'
+  common_name: California Gull
+- idx: 59
+  class_id: '60'
+  common_name: Glaucous winged Gull
+- idx: 60
+  class_id: '61'
+  common_name: Heermann Gull
+- idx: 61
+  class_id: '62'
+  common_name: Herring Gull
+- idx: 62
+  class_id: '63'
+  common_name: Ivory Gull
+- idx: 63
+  class_id: '64'
+  common_name: Ring billed Gull
+- idx: 64
+  class_id: '65'
+  common_name: Slaty backed Gull
+- idx: 65
+  class_id: '66'
+  common_name: Western Gull
+- idx: 66
+  class_id: '67'
+  common_name: Anna Hummingbird
+- idx: 67
+  class_id: '68'
+  common_name: Ruby throated Hummingbird
+- idx: 68
+  class_id: '69'
+  common_name: Rufous Hummingbird
+- idx: 69
+  class_id: '70'
+  common_name: Green Violetear
+- idx: 70
+  class_id: '71'
+  common_name: Long tailed Jaeger
+- idx: 71
+  class_id: '72'
+  common_name: Pomarine Jaeger
+- idx: 72
+  class_id: '73'
+  common_name: Blue Jay
+- idx: 73
+  class_id: '74'
+  common_name: Florida Jay
+- idx: 74
+  class_id: '75'
+  common_name: Green Jay
+- idx: 75
+  class_id: '76'
+  common_name: Dark eyed Junco
+- idx: 76
+  class_id: '77'
+  common_name: Tropical Kingbird
+- idx: 77
+  class_id: '78'
+  common_name: Gray Kingbird
+- idx: 78
+  class_id: '79'
+  common_name: Belted Kingfisher
+- idx: 79
+  class_id: '80'
+  common_name: Green Kingfisher
+- idx: 80
+  class_id: '81'
+  common_name: Pied Kingfisher
+- idx: 81
+  class_id: '82'
+  common_name: Ringed Kingfisher
+- idx: 82
+  class_id: '83'
+  common_name: White breasted Kingfisher
+- idx: 83
+  class_id: '84'
+  common_name: Red legged Kittiwake
+- idx: 84
+  class_id: '85'
+  common_name: Horned Lark
+- idx: 85
+  class_id: '86'
+  common_name: Pacific Loon
+- idx: 86
+  class_id: '87'
+  common_name: Mallard
+- idx: 87
+  class_id: '88'
+  common_name: Western Meadowlark
+- idx: 88
+  class_id: '89'
+  common_name: Hooded Merganser
+- idx: 89
+  class_id: '90'
+  common_name: Red breasted Merganser
+- idx: 90
+  class_id: '91'
+  common_name: Mockingbird
+- idx: 91
+  class_id: '92'
+  common_name: Nighthawk
+- idx: 92
+  class_id: '93'
+  common_name: Clark Nutcracker
+- idx: 93
+  class_id: '94'
+  common_name: White breasted Nuthatch
+- idx: 94
+  class_id: '95'
+  common_name: Baltimore Oriole
+- idx: 95
+  class_id: '96'
+  common_name: Hooded Oriole
+- idx: 96
+  class_id: '97'
+  common_name: Orchard Oriole
+- idx: 97
+  class_id: '98'
+  common_name: Scott Oriole
+- idx: 98
+  class_id: '99'
+  common_name: Ovenbird
+- idx: 99
+  class_id: '100'
+  common_name: Brown Pelican
+- idx: 100
+  class_id: '101'
+  common_name: White Pelican
+- idx: 101
+  class_id: '102'
+  common_name: Western Wood Pewee
+- idx: 102
+  class_id: '103'
+  common_name: Sayornis
+- idx: 103
+  class_id: '104'
+  common_name: American Pipit
+- idx: 104
+  class_id: '105'
+  common_name: Whip poor Will
+- idx: 105
+  class_id: '106'
+  common_name: Horned Puffin
+- idx: 106
+  class_id: '107'
+  common_name: Common Raven
+- idx: 107
+  class_id: '108'
+  common_name: White necked Raven
+- idx: 108
+  class_id: '109'
+  common_name: American Redstart
+- idx: 109
+  class_id: '110'
+  common_name: Geococcyx
+- idx: 110
+  class_id: '111'
+  common_name: Loggerhead Shrike
+- idx: 111
+  class_id: '112'
+  common_name: Great Grey Shrike
+- idx: 112
+  class_id: '113'
+  common_name: Baird Sparrow
+- idx: 113
+  class_id: '114'
+  common_name: Black throated Sparrow
+- idx: 114
+  class_id: '115'
+  common_name: Brewer Sparrow
+- idx: 115
+  class_id: '116'
+  common_name: Chipping Sparrow
+- idx: 116
+  class_id: '117'
+  common_name: Clay colored Sparrow
+- idx: 117
+  class_id: '118'
+  common_name: House Sparrow
+- idx: 118
+  class_id: '119'
+  common_name: Field Sparrow
+- idx: 119
+  class_id: '120'
+  common_name: Fox Sparrow
+- idx: 120
+  class_id: '121'
+  common_name: Grasshopper Sparrow
+- idx: 121
+  class_id: '122'
+  common_name: Harris Sparrow
+- idx: 122
+  class_id: '123'
+  common_name: Henslow Sparrow
+- idx: 123
+  class_id: '124'
+  common_name: Le Conte Sparrow
+- idx: 124
+  class_id: '125'
+  common_name: Lincoln Sparrow
+- idx: 125
+  class_id: '126'
+  common_name: Nelson Sharp tailed Sparrow
+- idx: 126
+  class_id: '127'
+  common_name: Savannah Sparrow
+- idx: 127
+  class_id: '128'
+  common_name: Seaside Sparrow
+- idx: 128
+  class_id: '129'
+  common_name: Song Sparrow
+- idx: 129
+  class_id: '130'
+  common_name: Tree Sparrow
+- idx: 130
+  class_id: '131'
+  common_name: Vesper Sparrow
+- idx: 131
+  class_id: '132'
+  common_name: White crowned Sparrow
+- idx: 132
+  class_id: '133'
+  common_name: White throated Sparrow
+- idx: 133
+  class_id: '134'
+  common_name: Cape Glossy Starling
+- idx: 134
+  class_id: '135'
+  common_name: Bank Swallow
+- idx: 135
+  class_id: '136'
+  common_name: Barn Swallow
+- idx: 136
+  class_id: '137'
+  common_name: Cliff Swallow
+- idx: 137
+  class_id: '138'
+  common_name: Tree Swallow
+- idx: 138
+  class_id: '139'
+  common_name: Scarlet Tanager
+- idx: 139
+  class_id: '140'
+  common_name: Summer Tanager
+- idx: 140
+  class_id: '141'
+  common_name: Artic Tern
+- idx: 141
+  class_id: '142'
+  common_name: Black Tern
+- idx: 142
+  class_id: '143'
+  common_name: Caspian Tern
+- idx: 143
+  class_id: '144'
+  common_name: Common Tern
+- idx: 144
+  class_id: '145'
+  common_name: Elegant Tern
+- idx: 145
+  class_id: '146'
+  common_name: Forsters Tern
+- idx: 146
+  class_id: '147'
+  common_name: Least Tern
+- idx: 147
+  class_id: '148'
+  common_name: Green tailed Towhee
+- idx: 148
+  class_id: '149'
+  common_name: Brown Thrasher
+- idx: 149
+  class_id: '150'
+  common_name: Sage Thrasher
+- idx: 150
+  class_id: '151'
+  common_name: Black capped Vireo
+- idx: 151
+  class_id: '152'
+  common_name: Blue headed Vireo
+- idx: 152
+  class_id: '153'
+  common_name: Philadelphia Vireo
+- idx: 153
+  class_id: '154'
+  common_name: Red eyed Vireo
+- idx: 154
+  class_id: '155'
+  common_name: Warbling Vireo
+- idx: 155
+  class_id: '156'
+  common_name: White eyed Vireo
+- idx: 156
+  class_id: '157'
+  common_name: Yellow throated Vireo
+- idx: 157
+  class_id: '158'
+  common_name: Bay breasted Warbler
+- idx: 158
+  class_id: '159'
+  common_name: Black and white Warbler
+- idx: 159
+  class_id: '160'
+  common_name: Black throated Blue Warbler
+- idx: 160
+  class_id: '161'
+  common_name: Blue winged Warbler
+- idx: 161
+  class_id: '162'
+  common_name: Canada Warbler
+- idx: 162
+  class_id: '163'
+  common_name: Cape May Warbler
+- idx: 163
+  class_id: '164'
+  common_name: Cerulean Warbler
+- idx: 164
+  class_id: '165'
+  common_name: Chestnut sided Warbler
+- idx: 165
+  class_id: '166'
+  common_name: Golden winged Warbler
+- idx: 166
+  class_id: '167'
+  common_name: Hooded Warbler
+- idx: 167
+  class_id: '168'
+  common_name: Kentucky Warbler
+- idx: 168
+  class_id: '169'
+  common_name: Magnolia Warbler
+- idx: 169
+  class_id: '170'
+  common_name: Mourning Warbler
+- idx: 170
+  class_id: '171'
+  common_name: Myrtle Warbler
+- idx: 171
+  class_id: '172'
+  common_name: Nashville Warbler
+- idx: 172
+  class_id: '173'
+  common_name: Orange crowned Warbler
+- idx: 173
+  class_id: '174'
+  common_name: Palm Warbler
+- idx: 174
+  class_id: '175'
+  common_name: Pine Warbler
+- idx: 175
+  class_id: '176'
+  common_name: Prairie Warbler
+- idx: 176
+  class_id: '177'
+  common_name: Prothonotary Warbler
+- idx: 177
+  class_id: '178'
+  common_name: Swainson Warbler
+- idx: 178
+  class_id: '179'
+  common_name: Tennessee Warbler
+- idx: 179
+  class_id: '180'
+  common_name: Wilson Warbler
+- idx: 180
+  class_id: '181'
+  common_name: Worm eating Warbler
+- idx: 181
+  class_id: '182'
+  common_name: Yellow Warbler
+- idx: 182
+  class_id: '183'
+  common_name: Northern Waterthrush
+- idx: 183
+  class_id: '184'
+  common_name: Louisiana Waterthrush
+- idx: 184
+  class_id: '185'
+  common_name: Bohemian Waxwing
+- idx: 185
+  class_id: '186'
+  common_name: Cedar Waxwing
+- idx: 186
+  class_id: '187'
+  common_name: American Three toed Woodpecker
+- idx: 187
+  class_id: '188'
+  common_name: Pileated Woodpecker
+- idx: 188
+  class_id: '189'
+  common_name: Red bellied Woodpecker
+- idx: 189
+  class_id: '190'
+  common_name: Red cockaded Woodpecker
+- idx: 190
+  class_id: '191'
+  common_name: Red headed Woodpecker
+- idx: 191
+  class_id: '192'
+  common_name: Downy Woodpecker
+- idx: 192
+  class_id: '193'
+  common_name: Bewick Wren
+- idx: 193
+  class_id: '194'
+  common_name: Cactus Wren
+- idx: 194
+  class_id: '195'
+  common_name: Carolina Wren
+- idx: 195
+  class_id: '196'
+  common_name: House Wren
+- idx: 196
+  class_id: '197'
+  common_name: Marsh Wren
+- idx: 197
+  class_id: '198'
+  common_name: Rock Wren
+- idx: 198
+  class_id: '199'
+  common_name: Winter Wren
+- idx: 199
+  class_id: '200'
+  common_name: Common Yellowthroat

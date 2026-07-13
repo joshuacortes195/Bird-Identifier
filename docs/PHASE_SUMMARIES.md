@@ -41,3 +41,63 @@ the same configs. (Will confirm with the user right before the Phase 5 full run.
 registry, `configs/taxonomy/birds.yaml`.
 
 ---
+
+## Phase 1 — Data acquisition & EDA ✅
+
+**Datasets acquired (real):**
+
+| Dataset | Classes | Train | Val | Test | w/ bbox | Imbalance (train) |
+|---------|--------:|------:|----:|-----:|--------:|------------------:|
+| NABirds | **555** | 21,519 | 2,410 | 24,633 | 48,562 | 18.0× |
+| CUB-200 | 200 | 5,394 | 600 | 5,794 | 11,788 | 1.04× |
+
+- Official NABirds split **respected** (24,633 test matches the published split); a
+  seeded, stratified 10%/class val set is carved from train.
+- Class counts are **derived** from the data (555 / 200), never hardcoded.
+
+**Sourcing:** NABirds is gated (Cornell agreement), so `download_data.py` tries direct
+mirrors → public HF single-file mirrors. Working mirror: **`antokun/nabirds`**
+(`nabirds.zip`, full official layout incl. `train_test_split.txt`, `bounding_boxes.txt`,
+`parts/`, `sizes.txt`). `QianC95/NABirds` turned out to be a geolocation dataset — the
+downloader detects the missing `images.txt` and falls through. CUB via the fast.ai S3
+mirror. If all fail, clear manual-placement instructions are printed.
+
+**Seams delivered:** dataset **registry** (`register_dataset`), config-driven **taxonomy**
+(`configs/taxonomy/birds.yaml` = 555 classes, `cub.yaml` = 200; each class →
+common_name → `supercategory: bird`), and an **`inat` stub** (`sources/inat.py`,
+`register_dataset` comment) marking the future seam.
+
+**EDA:** `outputs/eda/{nabirds,cub}/` — class-distribution (long tail), image-size/aspect
+stats, sample grid, `report.md`. Hardest-confusable pairs deferred to Phase 6 (needs a model).
+
+**Files:** `data/{schema,taxonomy,registry,prepare,eda}.py`,
+`data/sources/{download,cub_format,cub,nabirds,inat,preparers}.py`,
+`scripts/{download_data,eda,make_subset}.py`, `configs/data/{cub,nabirds,subset}.yaml`.
+
+**Next:** Phase 2 — torch dataloaders + fine-grained transforms.
+
+---
+
+## Phase 2 — Data pipeline ✅
+
+- **`SpeciesDataset`** reads manifests, returns `{image, label, supercategory}` (coarse
+  taxon plumbed through, constant "bird" now). **Bbox-crop-to-subject** path is a config
+  toggle (`bbox_crop`) so its effect is measurable.
+- **Transforms:** train = RandomResizedCrop + flip + RandAugment + normalize + random
+  erasing; eval = deterministic resize/center-crop. **Mixup/CutMix** wrapper (timm),
+  batch-level, applied in the training loop.
+- **Imbalance handling:** `WeightedRandomSampler` + inverse-freq class weights, both config options.
+- **Datasets self-register** (`nabirds`, `cub`) and resolve via `build_dataset(name, ...)`.
+- **Benchmark (real):** NABirds train loader = **741.6 imgs/sec** (batch 32, 6 workers) —
+  won't bottleneck the RTX 3060. Batch grid + EDA figures rendered.
+- **Tests:** 22 passing (manifest round-trip, taxonomy contiguity, eval-transform
+  determinism, bbox-crop clamping/correctness, registry resolution, dataset item contract,
+  collate, bbox-toggle changes output). All run in CI via a synthetic on-disk mini-dataset.
+
+**Files:** `data/{imageio,base,datasets,transforms,loaders,visualize}.py`,
+`scripts/benchmark_loader.py`, `tests/{conftest,test_schema_taxonomy,test_transforms_imageio,test_dataset_registry}.py`.
+
+**Next:** Phase 3 — model factory + `Head` interface + training loop, proven by a
+subset overfit smoke test. (GPU work begins.)
+
+---

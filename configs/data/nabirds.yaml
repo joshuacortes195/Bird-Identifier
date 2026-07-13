@@ -1,0 +1,25 @@
+# NABirds — primary dataset (555 categories, ~48.5k images, with bounding boxes).
+name: nabirds
+processed_dir: data/processed/nabirds
+image_root: data/raw/nabirds
+taxonomy: data/processed/nabirds/taxonomy.yaml
+
+batch_size: 32
+num_workers: 6
+pin_memory: true
+persistent_workers: true
+
+# NABirds ships bounding boxes -> crop-to-subject is the key fine-grained lever.
+bbox_crop: false          # toggle true to measure the two-stage crop effect
+bbox_pad_frac: 0.1
+weighted_sampler: false
+class_weighted_loss: false
+
+transform:
+  image_size: 224
+  resize_ratio: 1.14
+  randaugment: true
+  rand_aug_n: 2
+  rand_aug_m: 9
+  hflip: true
+  random_erasing: 0.25

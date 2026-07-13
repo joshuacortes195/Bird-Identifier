@@ -1,7 +1,8 @@
 # --- Data & artifacts (never commit) ---
-data/
-outputs/
-my_photos/
+# Anchored to repo root so they don't match the src/wildlife/data package etc.
+/data/
+/outputs/
+/my_photos/
 wandb/
 *.ckpt
 *.pt

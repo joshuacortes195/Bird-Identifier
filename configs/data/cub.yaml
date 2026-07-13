@@ -1,0 +1,25 @@
+# CUB-200-2011 — small, fast smoke dataset (200 classes).
+name: cub
+processed_dir: data/processed/cub
+image_root: data/raw/cub200
+taxonomy: data/processed/cub/taxonomy.yaml
+
+batch_size: 32
+num_workers: 4
+pin_memory: true
+persistent_workers: true
+
+# Fine-grained levers (measure their effect):
+bbox_crop: false
+bbox_pad_frac: 0.1
+weighted_sampler: false
+class_weighted_loss: false
+
+transform:
+  image_size: 224
+  resize_ratio: 1.14
+  randaugment: true
+  rand_aug_n: 2
+  rand_aug_m: 9
+  hflip: true
+  random_erasing: 0.25
