@@ -1,0 +1,1668 @@
+name: birds
+supercategory_default: bird
+classes:
+- idx: 0
+  class_id: '295'
+  common_name: Common Eider (Adult male)
+- idx: 1
+  class_id: '296'
+  common_name: Long-tailed Duck (Winter male)
+- idx: 2
+  class_id: '297'
+  common_name: Ruddy Duck (Breeding male)
+- idx: 3
+  class_id: '298'
+  common_name: Swainson's Hawk (Dark morph )
+- idx: 4
+  class_id: '299'
+  common_name: Red-tailed Hawk (Light morph adult)
+- idx: 5
+  class_id: '313'
+  common_name: Snow Goose (White morph)
+- idx: 6
+  class_id: '314'
+  common_name: Wood Duck (Breeding male)
+- idx: 7
+  class_id: '315'
+  common_name: Gadwall (Breeding male)
+- idx: 8
+  class_id: '316'
+  common_name: American Wigeon (Breeding male)
+- idx: 9
+  class_id: '317'
+  common_name: Mallard (Breeding male)
+- idx: 10
+  class_id: '318'
+  common_name: Blue-winged Teal  (Male)
+- idx: 11
+  class_id: '319'
+  common_name: Cinnamon Teal (Male)
+- idx: 12
+  class_id: '320'
+  common_name: Northern Shoveler (Breeding male)
+- idx: 13
+  class_id: '321'
+  common_name: Northern Pintail (Breeding male)
+- idx: 14
+  class_id: '322'
+  common_name: Green-winged Teal (Male)
+- idx: 15
+  class_id: '323'
+  common_name: Canvasback (Breeding male)
+- idx: 16
+  class_id: '324'
+  common_name: Redhead (Breeding male)
+- idx: 17
+  class_id: '325'
+  common_name: Ring-necked Duck (Breeding male)
+- idx: 18
+  class_id: '326'
+  common_name: Greater Scaup (Breeding male)
+- idx: 19
+  class_id: '327'
+  common_name: Lesser Scaup (Breeding male)
+- idx: 20
+  class_id: '328'
+  common_name: Harlequin Duck (Male)
+- idx: 21
+  class_id: '329'
+  common_name: Surf Scoter (Male)
+- idx: 22
+  class_id: '330'
+  common_name: White-winged Scoter (Male)
+- idx: 23
+  class_id: '331'
+  common_name: Black Scoter (Male)
+- idx: 24
+  class_id: '332'
+  common_name: Bufflehead (Breeding male)
+- idx: 25
+  class_id: '333'
+  common_name: Common Goldeneye (Breeding male)
+- idx: 26
+  class_id: '334'
+  common_name: Barrow's Goldeneye (Breeding male)
+- idx: 27
+  class_id: '335'
+  common_name: Hooded Merganser (Breeding male)
+- idx: 28
+  class_id: '336'
+  common_name: Common Merganser (Breeding male)
+- idx: 29
+  class_id: '337'
+  common_name: Red-breasted Merganser (Breeding male)
+- idx: 30
+  class_id: '338'
+  common_name: California Quail (Male)
+- idx: 31
+  class_id: '339'
+  common_name: Gambel's Quail (Male)
+- idx: 32
+  class_id: '340'
+  common_name: Ring-necked Pheasant (Male)
+- idx: 33
+  class_id: '341'
+  common_name: Red-throated Loon (Breeding)
+- idx: 34
+  class_id: '342'
+  common_name: Pacific Loon (Breeding)
+- idx: 35
+  class_id: '343'
+  common_name: Common Loon (Breeding)
+- idx: 36
+  class_id: '344'
+  common_name: Horned Grebe (Breeding)
+- idx: 37
+  class_id: '345'
+  common_name: Red-necked Grebe (Breeding)
+- idx: 38
+  class_id: '346'
+  common_name: Eared Grebe (Breeding)
+- idx: 39
+  class_id: '347'
+  common_name: Northern Gannet (Adult, Subadult)
+- idx: 40
+  class_id: '348'
+  common_name: Double-crested Cormorant (Immature)
+- idx: 41
+  class_id: '349'
+  common_name: Great Cormorant (Adult)
+- idx: 42
+  class_id: '350'
+  common_name: Little Blue Heron (Adult)
+- idx: 43
+  class_id: '351'
+  common_name: Reddish Egret (Dark morph)
+- idx: 44
+  class_id: '352'
+  common_name: Black-crowned Night-Heron (Adult)
+- idx: 45
+  class_id: '353'
+  common_name: Yellow-crowned Night-Heron (Adult)
+- idx: 46
+  class_id: '354'
+  common_name: White Ibis (Adult)
+- idx: 47
+  class_id: '355'
+  common_name: Bald Eagle (Adult, subadult)
+- idx: 48
+  class_id: '356'
+  common_name: Northern Harrier (Adult male)
+- idx: 49
+  class_id: '357'
+  common_name: Sharp-shinned Hawk (Adult )
+- idx: 50
+  class_id: '358'
+  common_name: Cooper's Hawk (Adult)
+- idx: 51
+  class_id: '359'
+  common_name: Red-shouldered Hawk (Adult )
+- idx: 52
+  class_id: '360'
+  common_name: Broad-winged Hawk (Adult)
+- idx: 53
+  class_id: '361'
+  common_name: Rough-legged Hawk (Dark morph)
+- idx: 54
+  class_id: '362'
+  common_name: Golden Eagle (Adult)
+- idx: 55
+  class_id: '363'
+  common_name: American Kestrel (Adult male)
+- idx: 56
+  class_id: '364'
+  common_name: Peregrine Falcon (Adult)
+- idx: 57
+  class_id: '365'
+  common_name: Purple Gallinule (Adult)
+- idx: 58
+  class_id: '366'
+  common_name: Common Gallinule (Adult)
+- idx: 59
+  class_id: '367'
+  common_name: Black-bellied Plover (Breeding)
+- idx: 60
+  class_id: '368'
+  common_name: Spotted Sandpiper (Breeding)
+- idx: 61
+  class_id: '369'
+  common_name: Sanderling (Breeding)
+- idx: 62
+  class_id: '370'
+  common_name: Dunlin (Breeding)
+- idx: 63
+  class_id: '371'
+  common_name: Wilson's Phalarope (Breeding)
+- idx: 64
+  class_id: '372'
+  common_name: Broad-billed Hummingbird (Adult Male)
+- idx: 65
+  class_id: '373'
+  common_name: Ruby-throated Hummingbird (Adult Male)
+- idx: 66
+  class_id: '374'
+  common_name: Black-chinned Hummingbird (Adult Male)
+- idx: 67
+  class_id: '375'
+  common_name: Anna's Hummingbird (Adult Male)
+- idx: 68
+  class_id: '376'
+  common_name: Costa's Hummingbird (Adult Male)
+- idx: 69
+  class_id: '377'
+  common_name: Calliope Hummingbird (Adult Male)
+- idx: 70
+  class_id: '378'
+  common_name: Broad-tailed Hummingbird (Adult Male)
+- idx: 71
+  class_id: '379'
+  common_name: Rufous Hummingbird (Adult Male)
+- idx: 72
+  class_id: '380'
+  common_name: Allen's Hummingbird (Adult Male)
+- idx: 73
+  class_id: '381'
+  common_name: Red-headed Woodpecker (Adult)
+- idx: 74
+  class_id: '382'
+  common_name: Northern Flicker (Yellow-shafted)
+- idx: 75
+  class_id: '392'
+  common_name: Black Guillemot (Breeding)
+- idx: 76
+  class_id: '393'
+  common_name: Pigeon Guillemot (Breeding)
+- idx: 77
+  class_id: '394'
+  common_name: Black-legged Kittiwake (Adult)
+- idx: 78
+  class_id: '395'
+  common_name: Laughing Gull (Breeding)
+- idx: 79
+  class_id: '396'
+  common_name: Heermann's Gull (Adult)
+- idx: 80
+  class_id: '397'
+  common_name: Ring-billed Gull (Adult)
+- idx: 81
+  class_id: '398'
+  common_name: Western Gull (Adult)
+- idx: 82
+  class_id: '399'
+  common_name: California Gull (Adult)
+- idx: 83
+  class_id: '400'
+  common_name: Herring Gull (Adult)
+- idx: 84
+  class_id: '401'
+  common_name: Glaucous-winged Gull (Adult)
+- idx: 85
+  class_id: '402'
+  common_name: Great Black-backed Gull (Adult)
+- idx: 86
+  class_id: '446'
+  common_name: Bonaparte's Gull
+- idx: 87
+  class_id: '447'
+  common_name: Mew Gull
+- idx: 88
+  class_id: '448'
+  common_name: Caspian Tern
+- idx: 89
+  class_id: '449'
+  common_name: Black Tern
+- idx: 90
+  class_id: '450'
+  common_name: Common Tern
+- idx: 91
+  class_id: '451'
+  common_name: Forster's Tern
+- idx: 92
+  class_id: '452'
+  common_name: Royal Tern
+- idx: 93
+  class_id: '453'
+  common_name: Black Skimmer
+- idx: 94
+  class_id: '454'
+  common_name: Greater White-fronted Goose
+- idx: 95
+  class_id: '455'
+  common_name: Brant
+- idx: 96
+  class_id: '456'
+  common_name: Cackling Goose
+- idx: 97
+  class_id: '457'
+  common_name: Canada Goose
+- idx: 98
+  class_id: '458'
+  common_name: Mute Swan
+- idx: 99
+  class_id: '459'
+  common_name: Trumpeter Swan
+- idx: 100
+  class_id: '460'
+  common_name: Tundra Swan
+- idx: 101
+  class_id: '461'
+  common_name: American Black Duck
+- idx: 102
+  class_id: '462'
+  common_name: Mottled Duck
+- idx: 103
+  class_id: '463'
+  common_name: Common Eider (Female/juvenile)
+- idx: 104
+  class_id: '464'
+  common_name: Long-tailed Duck (Summer male)
+- idx: 105
+  class_id: '465'
+  common_name: Ruddy Duck (Winter male)
+- idx: 106
+  class_id: '466'
+  common_name: Scaled Quail
+- idx: 107
+  class_id: '467'
+  common_name: Northern Bobwhite
+- idx: 108
+  class_id: '468'
+  common_name: Ruffed Grouse
+- idx: 109
+  class_id: '469'
+  common_name: Wild Turkey
+- idx: 110
+  class_id: '470'
+  common_name: Pied-billed Grebe
+- idx: 111
+  class_id: '471'
+  common_name: Western Grebe
+- idx: 112
+  class_id: '472'
+  common_name: Clark's Grebe
+- idx: 113
+  class_id: '473'
+  common_name: Wood Stork
+- idx: 114
+  class_id: '474'
+  common_name: Brandt's Cormorant
+- idx: 115
+  class_id: '475'
+  common_name: Neotropic Cormorant
+- idx: 116
+  class_id: '476'
+  common_name: Pelagic Cormorant
+- idx: 117
+  class_id: '477'
+  common_name: Anhinga
+- idx: 118
+  class_id: '478'
+  common_name: American White Pelican
+- idx: 119
+  class_id: '479'
+  common_name: Brown Pelican
+- idx: 120
+  class_id: '480'
+  common_name: Great Blue Heron
+- idx: 121
+  class_id: '481'
+  common_name: Great Egret
+- idx: 122
+  class_id: '482'
+  common_name: Snowy Egret
+- idx: 123
+  class_id: '483'
+  common_name: Tricolored Heron
+- idx: 124
+  class_id: '484'
+  common_name: Cattle Egret
+- idx: 125
+  class_id: '485'
+  common_name: Green Heron
+- idx: 126
+  class_id: '486'
+  common_name: Glossy Ibis
+- idx: 127
+  class_id: '487'
+  common_name: White-faced Ibis
+- idx: 128
+  class_id: '488'
+  common_name: Roseate Spoonbill
+- idx: 129
+  class_id: '489'
+  common_name: Black Vulture
+- idx: 130
+  class_id: '490'
+  common_name: Turkey Vulture
+- idx: 131
+  class_id: '491'
+  common_name: Osprey
+- idx: 132
+  class_id: '492'
+  common_name: Swallow-tailed Kite
+- idx: 133
+  class_id: '493'
+  common_name: White-tailed Kite
+- idx: 134
+  class_id: '494'
+  common_name: Mississippi Kite
+- idx: 135
+  class_id: '495'
+  common_name: Harris's Hawk
+- idx: 136
+  class_id: '496'
+  common_name: Swainson's Hawk (Light morph )
+- idx: 137
+  class_id: '497'
+  common_name: Red-tailed Hawk (Dark morph)
+- idx: 138
+  class_id: '498'
+  common_name: Crested Caracara
+- idx: 139
+  class_id: '499'
+  common_name: Merlin
+- idx: 140
+  class_id: '500'
+  common_name: Prairie Falcon
+- idx: 141
+  class_id: '501'
+  common_name: American Coot
+- idx: 142
+  class_id: '502'
+  common_name: Sandhill Crane
+- idx: 143
+  class_id: '503'
+  common_name: Semipalmated Plover
+- idx: 144
+  class_id: '504'
+  common_name: Killdeer
+- idx: 145
+  class_id: '505'
+  common_name: American Oystercatcher
+- idx: 146
+  class_id: '506'
+  common_name: Black Oystercatcher
+- idx: 147
+  class_id: '507'
+  common_name: Black-necked Stilt
+- idx: 148
+  class_id: '508'
+  common_name: American Avocet
+- idx: 149
+  class_id: '509'
+  common_name: Solitary Sandpiper
+- idx: 150
+  class_id: '510'
+  common_name: Greater Yellowlegs
+- idx: 151
+  class_id: '511'
+  common_name: Willet
+- idx: 152
+  class_id: '512'
+  common_name: Lesser Yellowlegs
+- idx: 153
+  class_id: '513'
+  common_name: Whimbrel
+- idx: 154
+  class_id: '514'
+  common_name: Long-billed Curlew
+- idx: 155
+  class_id: '515'
+  common_name: Marbled Godwit
+- idx: 156
+  class_id: '516'
+  common_name: Ruddy Turnstone
+- idx: 157
+  class_id: '517'
+  common_name: Black Turnstone
+- idx: 158
+  class_id: '518'
+  common_name: Surfbird
+- idx: 159
+  class_id: '519'
+  common_name: Semipalmated Sandpiper
+- idx: 160
+  class_id: '520'
+  common_name: Western Sandpiper
+- idx: 161
+  class_id: '521'
+  common_name: Least Sandpiper
+- idx: 162
+  class_id: '522'
+  common_name: Short-billed Dowitcher
+- idx: 163
+  class_id: '523'
+  common_name: Wilson's Snipe
+- idx: 164
+  class_id: '524'
+  common_name: American Woodcock
+- idx: 165
+  class_id: '525'
+  common_name: Rock Pigeon
+- idx: 166
+  class_id: '526'
+  common_name: Band-tailed Pigeon
+- idx: 167
+  class_id: '527'
+  common_name: Eurasian Collared-Dove
+- idx: 168
+  class_id: '528'
+  common_name: White-winged Dove
+- idx: 169
+  class_id: '529'
+  common_name: Mourning Dove
+- idx: 170
+  class_id: '530'
+  common_name: Inca Dove
+- idx: 171
+  class_id: '531'
+  common_name: Common Ground-Dove
+- idx: 172
+  class_id: '532'
+  common_name: Monk Parakeet
+- idx: 173
+  class_id: '533'
+  common_name: Yellow-billed Cuckoo
+- idx: 174
+  class_id: '534'
+  common_name: Black-billed Cuckoo
+- idx: 175
+  class_id: '535'
+  common_name: Greater Roadrunner
+- idx: 176
+  class_id: '536'
+  common_name: Barn Owl
+- idx: 177
+  class_id: '537'
+  common_name: Western Screech-Owl
+- idx: 178
+  class_id: '538'
+  common_name: Eastern Screech-Owl
+- idx: 179
+  class_id: '539'
+  common_name: Great Horned Owl
+- idx: 180
+  class_id: '540'
+  common_name: Snowy Owl
+- idx: 181
+  class_id: '541'
+  common_name: Northern Pygmy-Owl
+- idx: 182
+  class_id: '542'
+  common_name: Burrowing Owl
+- idx: 183
+  class_id: '543'
+  common_name: Barred Owl
+- idx: 184
+  class_id: '544'
+  common_name: Northern Saw-whet Owl
+- idx: 185
+  class_id: '545'
+  common_name: Common Nighthawk
+- idx: 186
+  class_id: '546'
+  common_name: Chimney Swift
+- idx: 187
+  class_id: '547'
+  common_name: Vaux's Swift
+- idx: 188
+  class_id: '548'
+  common_name: White-throated Swift
+- idx: 189
+  class_id: '549'
+  common_name: Belted Kingfisher
+- idx: 190
+  class_id: '550'
+  common_name: Acorn Woodpecker
+- idx: 191
+  class_id: '551'
+  common_name: Gila Woodpecker
+- idx: 192
+  class_id: '552'
+  common_name: Golden-fronted Woodpecker
+- idx: 193
+  class_id: '553'
+  common_name: Red-bellied Woodpecker
+- idx: 194
+  class_id: '554'
+  common_name: Yellow-bellied Sapsucker
+- idx: 195
+  class_id: '555'
+  common_name: Red-naped Sapsucker
+- idx: 196
+  class_id: '556'
+  common_name: Red-breasted Sapsucker
+- idx: 197
+  class_id: '557'
+  common_name: Ladder-backed Woodpecker
+- idx: 198
+  class_id: '558'
+  common_name: Nuttall's Woodpecker
+- idx: 199
+  class_id: '559'
+  common_name: Downy Woodpecker
+- idx: 200
+  class_id: '560'
+  common_name: Hairy Woodpecker
+- idx: 201
+  class_id: '561'
+  common_name: Pileated Woodpecker
+- idx: 202
+  class_id: '599'
+  common_name: Black Guillemot (Nonbreeding, juvenile)
+- idx: 203
+  class_id: '600'
+  common_name: Pigeon Guillemot (Nonbreeding, juvenile)
+- idx: 204
+  class_id: '601'
+  common_name: Black-legged Kittiwake (Immature)
+- idx: 205
+  class_id: '602'
+  common_name: Laughing Gull (Nonbreeding/Immature)
+- idx: 206
+  class_id: '603'
+  common_name: Heermann's Gull (Immature)
+- idx: 207
+  class_id: '604'
+  common_name: Ring-billed Gull (Immature)
+- idx: 208
+  class_id: '605'
+  common_name: Western Gull (Immature)
+- idx: 209
+  class_id: '606'
+  common_name: California Gull (Immature)
+- idx: 210
+  class_id: '607'
+  common_name: Herring Gull (Immature)
+- idx: 211
+  class_id: '608'
+  common_name: Glaucous-winged Gull (Immature)
+- idx: 212
+  class_id: '609'
+  common_name: Great Black-backed Gull (Immature)
+- idx: 213
+  class_id: '610'
+  common_name: Black-bellied Whistling-Duck
+- idx: 214
+  class_id: '611'
+  common_name: Snow Goose (Blue morph)
+- idx: 215
+  class_id: '612'
+  common_name: Ross's Goose
+- idx: 216
+  class_id: '613'
+  common_name: Wood Duck (Female/Eclipse male)
+- idx: 217
+  class_id: '614'
+  common_name: Gadwall (Female/Eclipse male)
+- idx: 218
+  class_id: '615'
+  common_name: American Wigeon (Female/Eclipse male)
+- idx: 219
+  class_id: '616'
+  common_name: Mallard (Female/Eclipse male)
+- idx: 220
+  class_id: '617'
+  common_name: Blue-winged Teal  (Female/juvenile)
+- idx: 221
+  class_id: '618'
+  common_name: Cinnamon Teal (Female/juvenile)
+- idx: 222
+  class_id: '619'
+  common_name: Northern Shoveler (Female/Eclipse male)
+- idx: 223
+  class_id: '620'
+  common_name: Northern Pintail (Female/Eclipse male)
+- idx: 224
+  class_id: '621'
+  common_name: Green-winged Teal  (Female/juvenile)
+- idx: 225
+  class_id: '622'
+  common_name: Canvasback (Female/Eclipse male)
+- idx: 226
+  class_id: '623'
+  common_name: Redhead (Female/Eclipse male)
+- idx: 227
+  class_id: '624'
+  common_name: Ring-necked Duck (Female/Eclipse male)
+- idx: 228
+  class_id: '625'
+  common_name: Greater Scaup (Female/Eclipse male)
+- idx: 229
+  class_id: '626'
+  common_name: Lesser Scaup (Female/Eclipse male)
+- idx: 230
+  class_id: '627'
+  common_name: Harlequin Duck (Female/juvenile)
+- idx: 231
+  class_id: '628'
+  common_name: Surf Scoter (Female/immature)
+- idx: 232
+  class_id: '629'
+  common_name: White-winged Scoter (Female/juvenile)
+- idx: 233
+  class_id: '630'
+  common_name: Black Scoter (Female/juvenile)
+- idx: 234
+  class_id: '631'
+  common_name: Bufflehead (Female/immature male)
+- idx: 235
+  class_id: '632'
+  common_name: Common Goldeneye (Female/Eclipse male)
+- idx: 236
+  class_id: '633'
+  common_name: Barrow's Goldeneye (Female/Eclipse male)
+- idx: 237
+  class_id: '634'
+  common_name: Hooded Merganser (Female/immature male)
+- idx: 238
+  class_id: '635'
+  common_name: Common Merganser (Female/immature male)
+- idx: 239
+  class_id: '636'
+  common_name: Red-breasted Merganser (Female/immature male)
+- idx: 240
+  class_id: '637'
+  common_name: California Quail (Female/juvenile)
+- idx: 241
+  class_id: '638'
+  common_name: Gambel's Quail (Female/juvenile)
+- idx: 242
+  class_id: '639'
+  common_name: Ring-necked Pheasant (Female/juvenile)
+- idx: 243
+  class_id: '640'
+  common_name: Red-throated Loon (Nonbreeding/juvenile)
+- idx: 244
+  class_id: '641'
+  common_name: Pacific Loon (Nonbreeding/juvenile)
+- idx: 245
+  class_id: '642'
+  common_name: Common Loon (Nonbreeding/juvenile)
+- idx: 246
+  class_id: '643'
+  common_name: Horned Grebe (Nonbreeding/juvenile)
+- idx: 247
+  class_id: '644'
+  common_name: Red-necked Grebe (Nonbreeding/juvenile)
+- idx: 248
+  class_id: '645'
+  common_name: Eared Grebe (Nonbreeding/juvenile)
+- idx: 249
+  class_id: '646'
+  common_name: Northern Gannet (Immature/Juvenile)
+- idx: 250
+  class_id: '647'
+  common_name: Double-crested Cormorant (Adult)
+- idx: 251
+  class_id: '648'
+  common_name: Great Cormorant (Immature)
+- idx: 252
+  class_id: '649'
+  common_name: Little Blue Heron (Immature)
+- idx: 253
+  class_id: '650'
+  common_name: Reddish Egret (White morph)
+- idx: 254
+  class_id: '651'
+  common_name: Black-crowned Night-Heron (Immature)
+- idx: 255
+  class_id: '652'
+  common_name: Yellow-crowned Night-Heron (Immature)
+- idx: 256
+  class_id: '653'
+  common_name: White Ibis (Immature)
+- idx: 257
+  class_id: '654'
+  common_name: Bald Eagle (Immature, juvenile)
+- idx: 258
+  class_id: '655'
+  common_name: Northern Harrier (Female, immature)
+- idx: 259
+  class_id: '656'
+  common_name: Sharp-shinned Hawk (Immature)
+- idx: 260
+  class_id: '657'
+  common_name: Cooper's Hawk (Immature)
+- idx: 261
+  class_id: '658'
+  common_name: Red-shouldered Hawk (Immature)
+- idx: 262
+  class_id: '659'
+  common_name: Broad-winged Hawk (Immature)
+- idx: 263
+  class_id: '660'
+  common_name: Rough-legged Hawk (Light morph)
+- idx: 264
+  class_id: '661'
+  common_name: Golden Eagle (Immature)
+- idx: 265
+  class_id: '662'
+  common_name: American Kestrel (Female, immature)
+- idx: 266
+  class_id: '663'
+  common_name: Peregrine Falcon (Immature)
+- idx: 267
+  class_id: '664'
+  common_name: Purple Gallinule (Immature)
+- idx: 268
+  class_id: '665'
+  common_name: Common Gallinule (Immature)
+- idx: 269
+  class_id: '666'
+  common_name: Black-bellied Plover (Nonbreeding/juvenile)
+- idx: 270
+  class_id: '667'
+  common_name: Spotted Sandpiper (Nonbreeding/juvenile)
+- idx: 271
+  class_id: '668'
+  common_name: Sanderling (Nonbreeding/juvenile)
+- idx: 272
+  class_id: '669'
+  common_name: Dunlin (Nonbreeding/juvenile)
+- idx: 273
+  class_id: '670'
+  common_name: Wilson's Phalarope (Nonbreeding, juvenile)
+- idx: 274
+  class_id: '671'
+  common_name: Broad-billed Hummingbird (Female, immature)
+- idx: 275
+  class_id: '672'
+  common_name: Ruby-throated Hummingbird (Female, immature)
+- idx: 276
+  class_id: '673'
+  common_name: Black-chinned Hummingbird (Female, immature)
+- idx: 277
+  class_id: '674'
+  common_name: Anna's Hummingbird (Female, immature)
+- idx: 278
+  class_id: '675'
+  common_name: Costa's Hummingbird (Female, immature)
+- idx: 279
+  class_id: '676'
+  common_name: Calliope Hummingbird (Female, immature)
+- idx: 280
+  class_id: '677'
+  common_name: Broad-tailed Hummingbird (Female, immature)
+- idx: 281
+  class_id: '678'
+  common_name: Rufous Hummingbird (Female, immature)
+- idx: 282
+  class_id: '679'
+  common_name: Allen's Hummingbird (Female, immature)
+- idx: 283
+  class_id: '680'
+  common_name: Red-headed Woodpecker (Immature)
+- idx: 284
+  class_id: '681'
+  common_name: Northern Flicker (Red-shafted)
+- idx: 285
+  class_id: '696'
+  common_name: Common Eider (Immature/Eclipse male)
+- idx: 286
+  class_id: '697'
+  common_name: Long-tailed Duck (Female/juvenile)
+- idx: 287
+  class_id: '698'
+  common_name: Ruddy Duck (Female/juvenile)
+- idx: 288
+  class_id: '699'
+  common_name: Swainson's Hawk (Immature)
+- idx: 289
+  class_id: '700'
+  common_name: Red-tailed Hawk (Light morph immature)
+- idx: 290
+  class_id: '746'
+  common_name: Dark-eyed Junco (Slate-colored)
+- idx: 291
+  class_id: '747'
+  common_name: Yellow-rumped Warbler (Breeding Myrtle)
+- idx: 292
+  class_id: '748'
+  common_name: European Starling (Breeding Adult)
+- idx: 293
+  class_id: '749'
+  common_name: Fox Sparrow (Red)
+- idx: 294
+  class_id: '750'
+  common_name: Summer Tanager (Adult Male)
+- idx: 295
+  class_id: '751'
+  common_name: Orchard Oriole (Adult Male)
+- idx: 296
+  class_id: '752'
+  common_name: Purple Martin (Adult male)
+- idx: 297
+  class_id: '753'
+  common_name: American Robin (Adult)
+- idx: 298
+  class_id: '754'
+  common_name: Phainopepla (Female/juvenile)
+- idx: 299
+  class_id: '755'
+  common_name: Snow Bunting (Breeding adult)
+- idx: 300
+  class_id: '756'
+  common_name: Common Yellowthroat (Adult Male)
+- idx: 301
+  class_id: '757'
+  common_name: American Redstart (Adult Male)
+- idx: 302
+  class_id: '758'
+  common_name: Magnolia Warbler (Breeding male)
+- idx: 303
+  class_id: '759'
+  common_name: Bay-breasted Warbler (Breeding male)
+- idx: 304
+  class_id: '760'
+  common_name: Chestnut-sided Warbler (Breeding male)
+- idx: 305
+  class_id: '761'
+  common_name: Blackpoll Warbler (Breeding male)
+- idx: 306
+  class_id: '762'
+  common_name: Black-throated Blue Warbler (Adult Male)
+- idx: 307
+  class_id: '763'
+  common_name: Lark Bunting (Breeding male)
+- idx: 308
+  class_id: '764'
+  common_name: White-throated Sparrow (White-striped)
+- idx: 309
+  class_id: '765'
+  common_name: Harris's Sparrow (Adult)
+- idx: 310
+  class_id: '766'
+  common_name: White-crowned Sparrow (Adult)
+- idx: 311
+  class_id: '767'
+  common_name: Golden-crowned Sparrow (Adult)
+- idx: 312
+  class_id: '768'
+  common_name: Dark-eyed Junco (Oregon)
+- idx: 313
+  class_id: '769'
+  common_name: Chipping Sparrow (Breeding)
+- idx: 314
+  class_id: '770'
+  common_name: Scarlet Tanager (Breeding Male)
+- idx: 315
+  class_id: '771'
+  common_name: Western Tanager (Breeding Male)
+- idx: 316
+  class_id: '772'
+  common_name: Northern Cardinal (Adult Male)
+- idx: 317
+  class_id: '773'
+  common_name: Rose-breasted Grosbeak (Adult Male)
+- idx: 318
+  class_id: '774'
+  common_name: Black-headed Grosbeak (Adult Male)
+- idx: 319
+  class_id: '775'
+  common_name: Blue Grosbeak (Adult Male)
+- idx: 320
+  class_id: '776'
+  common_name: Lazuli Bunting (Adult Male)
+- idx: 321
+  class_id: '777'
+  common_name: Indigo Bunting (Adult Male)
+- idx: 322
+  class_id: '778'
+  common_name: Painted Bunting (Adult Male)
+- idx: 323
+  class_id: '779'
+  common_name: Bobolink (Breeding male)
+- idx: 324
+  class_id: '780'
+  common_name: Red-winged Blackbird (Male)
+- idx: 325
+  class_id: '781'
+  common_name: Yellow-headed Blackbird (Adult Male)
+- idx: 326
+  class_id: '782'
+  common_name: Brewer's Blackbird (Female/Juvenile)
+- idx: 327
+  class_id: '783'
+  common_name: Brown-headed Cowbird (Male)
+- idx: 328
+  class_id: '784'
+  common_name: Hooded Oriole (Adult male)
+- idx: 329
+  class_id: '785'
+  common_name: Bullock's Oriole (Adult male)
+- idx: 330
+  class_id: '786'
+  common_name: Baltimore Oriole (Adult male)
+- idx: 331
+  class_id: '787'
+  common_name: Pine Grosbeak (Adult Male)
+- idx: 332
+  class_id: '788'
+  common_name: Purple Finch (Adult Male)
+- idx: 333
+  class_id: '789'
+  common_name: Cassin's Finch (Adult Male)
+- idx: 334
+  class_id: '790'
+  common_name: House Finch (Adult Male)
+- idx: 335
+  class_id: '791'
+  common_name: Red Crossbill (Adult Male)
+- idx: 336
+  class_id: '792'
+  common_name: White-winged Crossbill (Adult Male)
+- idx: 337
+  class_id: '793'
+  common_name: Lesser Goldfinch (Adult Male)
+- idx: 338
+  class_id: '794'
+  common_name: American Goldfinch (Breeding Male)
+- idx: 339
+  class_id: '795'
+  common_name: Evening Grosbeak (Adult Male)
+- idx: 340
+  class_id: '796'
+  common_name: House Sparrow (Male)
+- idx: 341
+  class_id: '797'
+  common_name: Vermilion Flycatcher (Adult male)
+- idx: 342
+  class_id: '798'
+  common_name: Yellow-rumped Warbler (Winter/juvenile Myrtle)
+- idx: 343
+  class_id: '799'
+  common_name: Northwestern Crow
+- idx: 344
+  class_id: '800'
+  common_name: Fish Crow
+- idx: 345
+  class_id: '801'
+  common_name: Chihuahuan Raven
+- idx: 346
+  class_id: '802'
+  common_name: Common Raven
+- idx: 347
+  class_id: '803'
+  common_name: Horned Lark
+- idx: 348
+  class_id: '804'
+  common_name: Tree Swallow
+- idx: 349
+  class_id: '805'
+  common_name: Violet-green Swallow
+- idx: 350
+  class_id: '806'
+  common_name: Northern Rough-winged Swallow
+- idx: 351
+  class_id: '807'
+  common_name: Bank Swallow
+- idx: 352
+  class_id: '808'
+  common_name: Cliff Swallow
+- idx: 353
+  class_id: '809'
+  common_name: Cave Swallow
+- idx: 354
+  class_id: '810'
+  common_name: Barn Swallow
+- idx: 355
+  class_id: '811'
+  common_name: Carolina Chickadee
+- idx: 356
+  class_id: '812'
+  common_name: Black-capped Chickadee
+- idx: 357
+  class_id: '813'
+  common_name: Mountain Chickadee
+- idx: 358
+  class_id: '814'
+  common_name: Chestnut-backed Chickadee
+- idx: 359
+  class_id: '815'
+  common_name: Boreal Chickadee
+- idx: 360
+  class_id: '816'
+  common_name: Bridled Titmouse
+- idx: 361
+  class_id: '817'
+  common_name: Oak Titmouse
+- idx: 362
+  class_id: '818'
+  common_name: Juniper Titmouse
+- idx: 363
+  class_id: '819'
+  common_name: Tufted Titmouse
+- idx: 364
+  class_id: '820'
+  common_name: Black-crested Titmouse
+- idx: 365
+  class_id: '821'
+  common_name: Verdin
+- idx: 366
+  class_id: '822'
+  common_name: Bushtit
+- idx: 367
+  class_id: '823'
+  common_name: Red-breasted Nuthatch
+- idx: 368
+  class_id: '824'
+  common_name: White-breasted Nuthatch
+- idx: 369
+  class_id: '825'
+  common_name: Pygmy Nuthatch
+- idx: 370
+  class_id: '826'
+  common_name: Brown-headed Nuthatch
+- idx: 371
+  class_id: '827'
+  common_name: Brown Creeper
+- idx: 372
+  class_id: '828'
+  common_name: Cactus Wren
+- idx: 373
+  class_id: '829'
+  common_name: Canyon Wren
+- idx: 374
+  class_id: '830'
+  common_name: Carolina Wren
+- idx: 375
+  class_id: '831'
+  common_name: Bewick's Wren
+- idx: 376
+  class_id: '832'
+  common_name: House Wren
+- idx: 377
+  class_id: '833'
+  common_name: Pacific Wren
+- idx: 378
+  class_id: '834'
+  common_name: Winter Wren
+- idx: 379
+  class_id: '835'
+  common_name: Marsh Wren
+- idx: 380
+  class_id: '836'
+  common_name: Blue-gray Gnatcatcher
+- idx: 381
+  class_id: '837'
+  common_name: Black-tailed Gnatcatcher
+- idx: 382
+  class_id: '838'
+  common_name: American Dipper
+- idx: 383
+  class_id: '839'
+  common_name: Golden-crowned Kinglet
+- idx: 384
+  class_id: '840'
+  common_name: Ruby-crowned Kinglet
+- idx: 385
+  class_id: '841'
+  common_name: Wrentit
+- idx: 386
+  class_id: '842'
+  common_name: Eastern Bluebird
+- idx: 387
+  class_id: '843'
+  common_name: Western Bluebird
+- idx: 388
+  class_id: '844'
+  common_name: Mountain Bluebird
+- idx: 389
+  class_id: '845'
+  common_name: Townsend's Solitaire
+- idx: 390
+  class_id: '846'
+  common_name: Veery
+- idx: 391
+  class_id: '847'
+  common_name: Swainson's Thrush
+- idx: 392
+  class_id: '848'
+  common_name: Hermit Thrush
+- idx: 393
+  class_id: '849'
+  common_name: Wood Thrush
+- idx: 394
+  class_id: '850'
+  common_name: Varied Thrush
+- idx: 395
+  class_id: '851'
+  common_name: Gray Catbird
+- idx: 396
+  class_id: '852'
+  common_name: Northern Mockingbird
+- idx: 397
+  class_id: '853'
+  common_name: Brown Thrasher
+- idx: 398
+  class_id: '854'
+  common_name: Curve-billed Thrasher
+- idx: 399
+  class_id: '855'
+  common_name: California Thrasher
+- idx: 400
+  class_id: '856'
+  common_name: European Starling (Nonbreeding Adult)
+- idx: 401
+  class_id: '857'
+  common_name: American Pipit
+- idx: 402
+  class_id: '858'
+  common_name: Bohemian Waxwing
+- idx: 403
+  class_id: '859'
+  common_name: Cedar Waxwing
+- idx: 404
+  class_id: '860'
+  common_name: Ovenbird
+- idx: 405
+  class_id: '861'
+  common_name: Louisiana Waterthrush
+- idx: 406
+  class_id: '862'
+  common_name: Northern Waterthrush
+- idx: 407
+  class_id: '863'
+  common_name: Blue-winged Warbler
+- idx: 408
+  class_id: '864'
+  common_name: Black-and-white Warbler
+- idx: 409
+  class_id: '865'
+  common_name: Prothonotary Warbler
+- idx: 410
+  class_id: '866'
+  common_name: Tennessee Warbler
+- idx: 411
+  class_id: '867'
+  common_name: Orange-crowned Warbler
+- idx: 412
+  class_id: '868'
+  common_name: Nashville Warbler
+- idx: 413
+  class_id: '869'
+  common_name: MacGillivray's Warbler
+- idx: 414
+  class_id: '870'
+  common_name: Mourning Warbler
+- idx: 415
+  class_id: '871'
+  common_name: Hooded Warbler
+- idx: 416
+  class_id: '872'
+  common_name: Cape May Warbler
+- idx: 417
+  class_id: '873'
+  common_name: Northern Parula
+- idx: 418
+  class_id: '874'
+  common_name: Blackburnian Warbler
+- idx: 419
+  class_id: '875'
+  common_name: Yellow Warbler
+- idx: 420
+  class_id: '876'
+  common_name: Palm Warbler
+- idx: 421
+  class_id: '877'
+  common_name: Pine Warbler
+- idx: 422
+  class_id: '878'
+  common_name: Yellow-throated Warbler
+- idx: 423
+  class_id: '879'
+  common_name: Prairie Warbler
+- idx: 424
+  class_id: '880'
+  common_name: Black-throated Gray Warbler
+- idx: 425
+  class_id: '881'
+  common_name: Townsend's Warbler
+- idx: 426
+  class_id: '882'
+  common_name: Hermit Warbler
+- idx: 427
+  class_id: '883'
+  common_name: Black-throated Green Warbler
+- idx: 428
+  class_id: '884'
+  common_name: Canada Warbler
+- idx: 429
+  class_id: '885'
+  common_name: Wilson's Warbler
+- idx: 430
+  class_id: '886'
+  common_name: Yellow-breasted Chat
+- idx: 431
+  class_id: '887'
+  common_name: Green-tailed Towhee
+- idx: 432
+  class_id: '888'
+  common_name: Spotted Towhee
+- idx: 433
+  class_id: '889'
+  common_name: Eastern Towhee
+- idx: 434
+  class_id: '890'
+  common_name: Rufous-crowned Sparrow
+- idx: 435
+  class_id: '891'
+  common_name: Canyon Towhee
+- idx: 436
+  class_id: '892'
+  common_name: California Towhee
+- idx: 437
+  class_id: '893'
+  common_name: Abert's Towhee
+- idx: 438
+  class_id: '894'
+  common_name: American Tree Sparrow
+- idx: 439
+  class_id: '895'
+  common_name: Clay-colored Sparrow
+- idx: 440
+  class_id: '896'
+  common_name: Brewer's Sparrow
+- idx: 441
+  class_id: '897'
+  common_name: Field Sparrow
+- idx: 442
+  class_id: '898'
+  common_name: Vesper Sparrow
+- idx: 443
+  class_id: '899'
+  common_name: Lark Sparrow
+- idx: 444
+  class_id: '900'
+  common_name: Savannah Sparrow
+- idx: 445
+  class_id: '901'
+  common_name: Fox Sparrow (Sooty)
+- idx: 446
+  class_id: '902'
+  common_name: Song Sparrow
+- idx: 447
+  class_id: '903'
+  common_name: Lincoln's Sparrow
+- idx: 448
+  class_id: '904'
+  common_name: Swamp Sparrow
+- idx: 449
+  class_id: '905'
+  common_name: Dark-eyed Junco (Pink-sided)
+- idx: 450
+  class_id: '906'
+  common_name: Summer Tanager (Female)
+- idx: 451
+  class_id: '907'
+  common_name: Pyrrhuloxia
+- idx: 452
+  class_id: '908'
+  common_name: Dickcissel
+- idx: 453
+  class_id: '909'
+  common_name: Eastern Meadowlark
+- idx: 454
+  class_id: '910'
+  common_name: Western Meadowlark
+- idx: 455
+  class_id: '911'
+  common_name: Rusty Blackbird
+- idx: 456
+  class_id: '912'
+  common_name: Common Grackle
+- idx: 457
+  class_id: '913'
+  common_name: Boat-tailed Grackle
+- idx: 458
+  class_id: '914'
+  common_name: Great-tailed Grackle
+- idx: 459
+  class_id: '915'
+  common_name: Bronzed Cowbird
+- idx: 460
+  class_id: '916'
+  common_name: Orchard Oriole (Immature Male)
+- idx: 461
+  class_id: '917'
+  common_name: Gray-crowned Rosy-Finch
+- idx: 462
+  class_id: '918'
+  common_name: Black Rosy-Finch
+- idx: 463
+  class_id: '919'
+  common_name: Brown-capped Rosy-Finch
+- idx: 464
+  class_id: '920'
+  common_name: Common Redpoll
+- idx: 465
+  class_id: '921'
+  common_name: Hoary Redpoll
+- idx: 466
+  class_id: '922'
+  common_name: Pine Siskin
+- idx: 467
+  class_id: '923'
+  common_name: Western Wood-Pewee
+- idx: 468
+  class_id: '924'
+  common_name: Eastern Wood-Pewee
+- idx: 469
+  class_id: '925'
+  common_name: Least Flycatcher
+- idx: 470
+  class_id: '926'
+  common_name: Pacific-slope Flycatcher
+- idx: 471
+  class_id: '927'
+  common_name: Cordilleran Flycatcher
+- idx: 472
+  class_id: '928'
+  common_name: Black Phoebe
+- idx: 473
+  class_id: '929'
+  common_name: Eastern Phoebe
+- idx: 474
+  class_id: '930'
+  common_name: Say's Phoebe
+- idx: 475
+  class_id: '931'
+  common_name: Ash-throated Flycatcher
+- idx: 476
+  class_id: '932'
+  common_name: Great Crested Flycatcher
+- idx: 477
+  class_id: '933'
+  common_name: Cassin's Kingbird
+- idx: 478
+  class_id: '934'
+  common_name: Western Kingbird
+- idx: 479
+  class_id: '935'
+  common_name: Eastern Kingbird
+- idx: 480
+  class_id: '936'
+  common_name: Scissor-tailed Flycatcher
+- idx: 481
+  class_id: '937'
+  common_name: Loggerhead Shrike
+- idx: 482
+  class_id: '938'
+  common_name: Northern Shrike
+- idx: 483
+  class_id: '939'
+  common_name: White-eyed Vireo
+- idx: 484
+  class_id: '940'
+  common_name: Bell's Vireo
+- idx: 485
+  class_id: '941'
+  common_name: Yellow-throated Vireo
+- idx: 486
+  class_id: '942'
+  common_name: Plumbeous Vireo
+- idx: 487
+  class_id: '943'
+  common_name: Cassin's Vireo
+- idx: 488
+  class_id: '944'
+  common_name: Blue-headed Vireo
+- idx: 489
+  class_id: '945'
+  common_name: Hutton's Vireo
+- idx: 490
+  class_id: '946'
+  common_name: Warbling Vireo
+- idx: 491
+  class_id: '947'
+  common_name: Red-eyed Vireo
+- idx: 492
+  class_id: '948'
+  common_name: Gray Jay
+- idx: 493
+  class_id: '949'
+  common_name: Steller's Jay
+- idx: 494
+  class_id: '950'
+  common_name: Blue Jay
+- idx: 495
+  class_id: '951'
+  common_name: Florida Scrub-Jay
+- idx: 496
+  class_id: '952'
+  common_name: Western Scrub-Jay
+- idx: 497
+  class_id: '953'
+  common_name: Mexican Jay
+- idx: 498
+  class_id: '954'
+  common_name: Clark's Nutcracker
+- idx: 499
+  class_id: '955'
+  common_name: Black-billed Magpie
+- idx: 500
+  class_id: '956'
+  common_name: Yellow-billed Magpie
+- idx: 501
+  class_id: '957'
+  common_name: American Crow
+- idx: 502
+  class_id: '958'
+  common_name: Yellow-rumped Warbler (Breeding Audubon's)
+- idx: 503
+  class_id: '959'
+  common_name: Purple Martin (Female/juvenile)
+- idx: 504
+  class_id: '960'
+  common_name: American Robin (Juvenile)
+- idx: 505
+  class_id: '961'
+  common_name: Phainopepla (Male)
+- idx: 506
+  class_id: '962'
+  common_name: Snow Bunting (Nonbreeding)
+- idx: 507
+  class_id: '963'
+  common_name: Common Yellowthroat (Female/immature male)
+- idx: 508
+  class_id: '964'
+  common_name: American Redstart (Female/juvenile)
+- idx: 509
+  class_id: '965'
+  common_name: Magnolia Warbler (Female/immature male)
+- idx: 510
+  class_id: '966'
+  common_name: Bay-breasted Warbler (Female, Nonbreeding male, Immature)
+- idx: 511
+  class_id: '967'
+  common_name: Chestnut-sided Warbler (Female/immature male)
+- idx: 512
+  class_id: '968'
+  common_name: Blackpoll Warbler (Female/juvenile)
+- idx: 513
+  class_id: '969'
+  common_name: Black-throated Blue Warbler (Female/Immature male)
+- idx: 514
+  class_id: '970'
+  common_name: Lark Bunting (Female/Nonbreeding male)
+- idx: 515
+  class_id: '971'
+  common_name: White-throated Sparrow (Tan-striped/immature)
+- idx: 516
+  class_id: '972'
+  common_name: Harris's Sparrow (Immature)
+- idx: 517
+  class_id: '973'
+  common_name: White-crowned Sparrow (Immature)
+- idx: 518
+  class_id: '974'
+  common_name: Golden-crowned Sparrow (Immature)
+- idx: 519
+  class_id: '975'
+  common_name: Dark-eyed Junco (White-winged)
+- idx: 520
+  class_id: '976'
+  common_name: Chipping Sparrow (Immature/nonbreeding adult)
+- idx: 521
+  class_id: '977'
+  common_name: Scarlet Tanager (Female/Nonbreeding Male)
+- idx: 522
+  class_id: '978'
+  common_name: Western Tanager (Female/Nonbreeding Male)
+- idx: 523
+  class_id: '979'
+  common_name: Northern Cardinal (Female/Juvenile)
+- idx: 524
+  class_id: '980'
+  common_name: Rose-breasted Grosbeak (Female/immature male)
+- idx: 525
+  class_id: '981'
+  common_name: Black-headed Grosbeak (Female/immature male)
+- idx: 526
+  class_id: '982'
+  common_name: Blue Grosbeak (Female/juvenile)
+- idx: 527
+  class_id: '983'
+  common_name: Lazuli Bunting (Female/juvenile)
+- idx: 528
+  class_id: '984'
+  common_name: Indigo Bunting (Female/juvenile)
+- idx: 529
+  class_id: '985'
+  common_name: Painted Bunting (Female/juvenile)
+- idx: 530
+  class_id: '986'
+  common_name: Bobolink (Female/juvenile/nonbreeding male)
+- idx: 531
+  class_id: '987'
+  common_name: Red-winged Blackbird (Female/juvenile)
+- idx: 532
+  class_id: '988'
+  common_name: Yellow-headed Blackbird (Female/Immature Male)
+- idx: 533
+  class_id: '989'
+  common_name: Brewer's Blackbird (Male)
+- idx: 534
+  class_id: '990'
+  common_name: Brown-headed Cowbird (Female/Juvenile)
+- idx: 535
+  class_id: '991'
+  common_name: Hooded Oriole (Female/Immature male)
+- idx: 536
+  class_id: '992'
+  common_name: Bullock's Oriole (Female/Immature male)
+- idx: 537
+  class_id: '993'
+  common_name: Baltimore Oriole (Female/Immature male)
+- idx: 538
+  class_id: '994'
+  common_name: Pine Grosbeak (Female/juvenile)
+- idx: 539
+  class_id: '995'
+  common_name: Purple Finch (Female/immature)
+- idx: 540
+  class_id: '996'
+  common_name: Cassin's Finch (Female/immature)
+- idx: 541
+  class_id: '997'
+  common_name: House Finch (Female/immature)
+- idx: 542
+  class_id: '998'
+  common_name: Red Crossbill (Female/juvenile)
+- idx: 543
+  class_id: '999'
+  common_name: White-winged Crossbill (Female/juvenile)
+- idx: 544
+  class_id: '1000'
+  common_name: Lesser Goldfinch (Female/juvenile)
+- idx: 545
+  class_id: '1001'
+  common_name: American Goldfinch (Female/Nonbreeding Male)
+- idx: 546
+  class_id: '1002'
+  common_name: Evening Grosbeak (Female/Juvenile)
+- idx: 547
+  class_id: '1003'
+  common_name: House Sparrow (Female/Juvenile)
+- idx: 548
+  class_id: '1004'
+  common_name: Vermilion Flycatcher (Female, immature)
+- idx: 549
+  class_id: '1005'
+  common_name: European Starling (Juvenile)
+- idx: 550
+  class_id: '1006'
+  common_name: Fox Sparrow (Thick-billed/Slate-colored)
+- idx: 551
+  class_id: '1007'
+  common_name: Summer Tanager (Immature Male)
+- idx: 552
+  class_id: '1008'
+  common_name: Orchard Oriole (Female/Juvenile)
+- idx: 553
+  class_id: '1009'
+  common_name: Yellow-rumped Warbler (Winter/juvenile Audubon's)
+- idx: 554
+  class_id: '1010'
+  common_name: Dark-eyed Junco (Red-backed/Gray-headed)

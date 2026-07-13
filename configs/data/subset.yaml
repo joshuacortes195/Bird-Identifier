@@ -1,0 +1,25 @@
+# ~10-class subset (built from CUB by default) for fast smoke iteration.
+# Create with: python scripts/make_subset.py --source cub --num-classes 10
+name: subset
+processed_dir: data/processed/subset
+image_root: data/raw/cub200
+taxonomy: data/processed/subset/taxonomy.yaml
+
+batch_size: 32
+num_workers: 2
+pin_memory: true
+persistent_workers: false
+
+bbox_crop: false
+bbox_pad_frac: 0.1
+weighted_sampler: false
+class_weighted_loss: false
+
+transform:
+  image_size: 224
+  resize_ratio: 1.14
+  randaugment: true
+  rand_aug_n: 2
+  rand_aug_m: 9
+  hflip: true
+  random_erasing: 0.0        # keep it easy to overfit for the smoke test
