@@ -34,6 +34,33 @@ class CalibrationReport:
     overconfident: bool  # avg confidence > avg accuracy overall
 
 
+def _nll(logits: np.ndarray, targets: np.ndarray, temperature: float) -> float:
+    """Mean negative log-likelihood of the true class under temperature-scaled softmax."""
+    z = logits / temperature
+    z = z - z.max(axis=1, keepdims=True)
+    logsumexp = np.log(np.exp(z).sum(axis=1))
+    logp_true = z[np.arange(len(targets)), targets] - logsumexp
+    return float(-logp_true.mean())
+
+
+def fit_temperature(
+    logits: np.ndarray, targets: np.ndarray, bounds: tuple[float, float] = (0.5, 5.0)
+) -> float:
+    """Fit a single softmax temperature T that minimizes NLL (Guo et al. 2017).
+
+    Must be fit on a held-out split (val), then applied to test logits. T>1 softens
+    over-confident predictions; T<1 sharpens under-confident ones.
+    """
+    from scipy.optimize import minimize_scalar
+
+    res = minimize_scalar(lambda t: _nll(logits, targets, t), bounds=bounds, method="bounded")
+    return float(res.x)
+
+
+def apply_temperature(logits: np.ndarray, temperature: float) -> np.ndarray:
+    return logits / temperature
+
+
 def calibration(logits: np.ndarray, targets: np.ndarray, n_bins: int = 15) -> CalibrationReport:
     probs = softmax(logits)
     confidences = probs.max(axis=1)
