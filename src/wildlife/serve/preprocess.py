@@ -46,8 +46,9 @@ def _resize_shorter_side(img: Image.Image, size: int) -> Image.Image:
 
 def _center_crop(img: Image.Image, size: int) -> Image.Image:
     w, h = img.size
-    left = (w - size) // 2
-    top = (h - size) // 2
+    # Match torchvision.CenterCrop's rounding exactly so serving == training preprocessing.
+    left = int(round((w - size) / 2.0))
+    top = int(round((h - size) / 2.0))
     # If the image is smaller than the crop (shouldn't happen after resize), pad-safe clamp.
     left = max(0, left)
     top = max(0, top)
