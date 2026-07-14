@@ -311,3 +311,30 @@ in this session — each is a separate `train.py` invocation with a config overr
 scaffolding built on the Mac); now being executed against the real checkpoint on the PC.
 
 ---
+
+## Integration on PC — Phases 8 & 9 EXECUTED against the real model ✅
+
+Merged the Mac's `phase-6-10-fullstack` scaffolding with the trained checkpoint and ran
+the torch/GPU-relevant pipelines for real (they'd only ever been unit-tested before).
+
+**Bugs fixed during integration:**
+- EMA checkpoint loading in `scripts/evaluate.py` and `scripts/export.py` — weights are
+  stored under a `module.` prefix (ModelEma); loading them raw would fail. Now stripped.
+- ONNX export: pinned the **legacy TorchScript exporter** (`dynamo=False`) — avoids the
+  torch 2.11 dynamo exporter's onnxscript dep + a Windows cp1252 unicode-print crash.
+
+**Phase 8 (real, CPU batch=1):** ONNX fp32 = 336.9 MB / p50 145 ms / 6.9 img/s (fastest,
+1.4× vs PyTorch); dynamic INT8 = 85.6 MB (4× smaller) but p50 503 ms (slower — conv-heavy
+ConvNeXt on CPU). Parity verified <1e-3. fp32 ONNX is the serving default. See
+`results/optimization_benchmark.md`.
+
+**Phase 9 (validated):** FastAPI + real ONNX model → 6/8 top-1 on random test images
+(matches 89% test acc); misses had the true species at rank 2. Pure-NumPy preprocessing
+confirmed to match the trained transform through the full serve path.
+
+**Remaining:** Phase 6 Grad-CAM/error-analysis + temp scaling; Phase 7 OOD (needs my
+photos); Phase 10 frontend build/run vs the API; Phase 11 deploy (needs hosting accounts);
+Phase 12 docs. Serving artifacts (`outputs/serving/*.onnx`) are git-ignored/large — deploy
+transfers them out-of-band or CI regenerates via `scripts/export.py`.
+
+---

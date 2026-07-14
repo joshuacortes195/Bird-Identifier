@@ -145,7 +145,9 @@ def main(cfg: DictConfig) -> None:
     # them under a "module." prefix, so strip it before loading into the bare model.
     ema_state = ckpt.get("ema")
     if ema_state:
-        state = {k.removeprefix("module."): v for k, v in ema_state.items() if k.startswith("module.")}
+        state = {
+            k.removeprefix("module."): v for k, v in ema_state.items() if k.startswith("module.")
+        }
     else:
         state = ckpt["model"]
     model.load_state_dict(state)

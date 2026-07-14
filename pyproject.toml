@@ -39,7 +39,7 @@ serve = [
     "onnxruntime>=1.19.0",
 ]
 demo = ["gradio>=4.44.0"]
-optimize = ["onnx>=1.16.0", "onnxruntime>=1.19.0", "onnxconverter-common>=1.14.0"]
+optimize = ["onnx>=1.16.0", "onnxruntime>=1.19.0", "onnxconverter-common>=1.14.0", "onnxscript>=0.1.0"]
 dev = [
     "pytest>=8.3.0",
     "pytest-cov>=5.0.0",
