@@ -1,0 +1,272 @@
+{
+  "checkpoint": "C:\\Users\\Josh\\wildlife-classifier\\outputs\\checkpoints\\nabirds-convnextv2_base-20260713_181835\\best.pt",
+  "dataset": "nabirds",
+  "split": "test",
+  "num_images": 24633,
+  "num_classes": 555,
+  "top1": 0.889984979499046,
+  "top5": 0.9877806194941745,
+  "macro_f1": 0.868940976066475,
+  "mean_per_class_acc": 0.8672203497536349,
+  "worst_classes": [
+    {
+      "class": "Dark-eyed Junco (White-winged)",
+      "acc": 0.0
+    },
+    {
+      "class": "Greater Scaup (Female/Eclipse male)",
+      "acc": 0.03333333333333333
+    },
+    {
+      "class": "Chihuahuan Raven",
+      "acc": 0.07407407407407407
+    },
+    {
+      "class": "Costa's Hummingbird (Female, immature)",
+      "acc": 0.09523809523809523
+    },
+    {
+      "class": "Western Gull (Immature)",
+      "acc": 0.11538461538461539
+    },
+    {
+      "class": "Pacific Wren",
+      "acc": 0.14285714285714285
+    },
+    {
+      "class": "Bank Swallow",
+      "acc": 0.18518518518518517
+    },
+    {
+      "class": "Northwestern Crow",
+      "acc": 0.21052631578947367
+    },
+    {
+      "class": "Vaux's Swift",
+      "acc": 0.25
+    },
+    {
+      "class": "Allen's Hummingbird (Female, immature)",
+      "acc": 0.2682926829268293
+    }
+  ],
+  "most_confused_pairs": [
+    {
+      "true": "Greater Scaup (Female/Eclipse male)",
+      "pred": "Lesser Scaup (Female/Eclipse male)",
+      "count": 28
+    },
+    {
+      "true": "Allen's Hummingbird (Female, immature)",
+      "pred": "Rufous Hummingbird (Female, immature)",
+      "count": 25
+    },
+    {
+      "true": "Allen's Hummingbird (Adult Male)",
+      "pred": "Rufous Hummingbird (Adult Male)",
+      "count": 24
+    },
+    {
+      "true": "Greater Yellowlegs",
+      "pred": "Lesser Yellowlegs",
+      "count": 23
+    },
+    {
+      "true": "Black-capped Chickadee",
+      "pred": "Carolina Chickadee",
+      "count": 23
+    },
+    {
+      "true": "Hairy Woodpecker",
+      "pred": "Downy Woodpecker",
+      "count": 22
+    },
+    {
+      "true": "Red-naped Sapsucker",
+      "pred": "Yellow-bellied Sapsucker",
+      "count": 21
+    },
+    {
+      "true": "Yellow-rumped Warbler (Breeding Audubon's)",
+      "pred": "Yellow-rumped Warbler (Winter/juvenile Audubon's)",
+      "count": 20
+    },
+    {
+      "true": "Pacific-slope Flycatcher",
+      "pred": "Cordilleran Flycatcher",
+      "count": 19
+    },
+    {
+      "true": "Western Screech-Owl",
+      "pred": "Eastern Screech-Owl",
+      "count": 19
+    },
+    {
+      "true": "Western Wood-Pewee",
+      "pred": "Eastern Wood-Pewee",
+      "count": 19
+    },
+    {
+      "true": "Pacific Wren",
+      "pred": "Winter Wren",
+      "count": 18
+    },
+    {
+      "true": "Mourning Warbler",
+      "pred": "MacGillivray's Warbler",
+      "count": 18
+    },
+    {
+      "true": "Greater Scaup (Breeding male)",
+      "pred": "Lesser Scaup (Breeding male)",
+      "count": 17
+    },
+    {
+      "true": "Chihuahuan Raven",
+      "pred": "Common Raven",
+      "count": 16
+    }
+  ],
+  "calibration": {
+    "ece": 0.13362740806127316,
+    "bins": [
+      {
+        "bin": [
+          0.0,
+          0.06666666666666667
+        ],
+        "acc": 0.0,
+        "conf": 0.04529750347137451,
+        "count": 15
+      },
+      {
+        "bin": [
+          0.06666666666666667,
+          0.13333333333333333
+        ],
+        "acc": 0.20987654320987653,
+        "conf": 0.10529395937919617,
+        "count": 81
+      },
+      {
+        "bin": [
+          0.13333333333333333,
+          0.2
+        ],
+        "acc": 0.2781065088757396,
+        "conf": 0.1688428819179535,
+        "count": 169
+      },
+      {
+        "bin": [
+          0.2,
+          0.26666666666666666
+        ],
+        "acc": 0.3984375,
+        "conf": 0.23724086582660675,
+        "count": 256
+      },
+      {
+        "bin": [
+          0.26666666666666666,
+          0.3333333333333333
+        ],
+        "acc": 0.44358974358974357,
+        "conf": 0.3036639392375946,
+        "count": 390
+      },
+      {
+        "bin": [
+          0.3333333333333333,
+          0.4
+        ],
+        "acc": 0.5181347150259067,
+        "conf": 0.36960381269454956,
+        "count": 579
+      },
+      {
+        "bin": [
+          0.4,
+          0.4666666666666667
+        ],
+        "acc": 0.5642673521850899,
+        "conf": 0.43356165289878845,
+        "count": 778
+      },
+      {
+        "bin": [
+          0.4666666666666667,
+          0.5333333333333333
+        ],
+        "acc": 0.5923984272608126,
+        "conf": 0.49941933155059814,
+        "count": 763
+      },
+      {
+        "bin": [
+          0.5333333333333333,
+          0.6
+        ],
+        "acc": 0.711352657004831,
+        "conf": 0.5668357610702515,
+        "count": 828
+      },
+      {
+        "bin": [
+          0.6,
+          0.6666666666666666
+        ],
+        "acc": 0.7855805243445693,
+        "conf": 0.6356683373451233,
+        "count": 1068
+      },
+      {
+        "bin": [
+          0.6666666666666666,
+          0.7333333333333333
+        ],
+        "acc": 0.8406524466750314,
+        "conf": 0.7032011151313782,
+        "count": 1594
+      },
+      {
+        "bin": [
+          0.7333333333333333,
+          0.8
+        ],
+        "acc": 0.9430595644187877,
+        "conf": 0.7730281352996826,
+        "count": 3811
+      },
+      {
+        "bin": [
+          0.8,
+          0.8666666666666667
+        ],
+        "acc": 0.9791666666666666,
+        "conf": 0.8342271447181702,
+        "count": 8736
+      },
+      {
+        "bin": [
+          0.8666666666666667,
+          0.9333333333333333
+        ],
+        "acc": 0.9836532978521194,
+        "conf": 0.8914814591407776,
+        "count": 5261
+      },
+      {
+        "bin": [
+          0.9333333333333333,
+          1.0
+        ],
+        "acc": 0.9835526315789473,
+        "conf": 0.9454021453857422,
+        "count": 304
+      }
+    ],
+    "mean_confidence": 0.7562909722328186
+  },
+  "git_commit": "16c0f30330f7922f356fb1beb3bcb83241eceb0e"
+}
