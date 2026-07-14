@@ -132,3 +132,41 @@ where bf16 is unavailable. This matters for Phase 5 — the full run relies on t
 long full-NABirds run — **needs user OK on compute** before kicking off (~3h estimate).
 
 ---
+
+## Phase 5 — Full NABirds training ✅ (user-approved compute)
+
+**Trained ConvNeXt-V2-Base on full NABirds** (555 classes). Pre-flight VRAM check:
+8.25 GB peak of 12 GB at batch 32 bf16. Ran 30 epochs, ~6.5 min/epoch = **~3.3 h**.
+
+**Real results (see `results/`):**
+
+| Metric | Val (2,410) | **Test (24,633)** |
+|--------|------------:|------------------:|
+| Top-1 | 91.58% | **89.00%** |
+| Top-5 | 99.38% | **98.78%** |
+| Macro-F1 | — | 0.869 |
+| ECE | — | 0.134 |
+
+Recipe: 224px, eff. batch 64, bf16 AMP, AdamW, cosine+warmup, label smoothing 0.1,
+Mixup/CutMix, EMA (best epoch by EMA val top-1). Full training curve in
+`results/nabirds_base_training_history.csv`.
+
+**Note on scope:** this is the strong single baseline. The *ablation table*
+(bbox-crop / higher-res / TTA deltas) needs additional multi-hour runs and was not run
+in this session — each is a separate `train.py` invocation with a config override.
+
+---
+
+## Phase 6 — Evaluation (core metrics ✅, interpretability pending)
+
+- `scripts/evaluate.py` + `wildlife.eval.{metrics,runner}`: single test-set pass →
+  top-1/top-5, macro-F1, per-class accuracy, worst classes, most-confused species pairs,
+  confusion matrix figure, and **calibration (ECE + reliability diagram)**.
+- Ran on the NABirds **test set** (real numbers above). Artifacts in `results/`.
+- **Remaining:** Grad-CAM overlays + written error analysis (needs the checkpoint; can run
+  on the Mac). ECE 0.134 → add temperature scaling.
+
+**Checkpoint:** `outputs/checkpoints/nabirds-convnextv2_base-20260713_181835/best.pt`
+(674 MB, git-ignored) — must be transferred out-of-band to continue Phases 8/9/11 elsewhere.
+
+---

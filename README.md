@@ -16,6 +16,20 @@ Built phase-by-phase. See `docs/PHASE_SUMMARIES.md` for the running log of decis
 and real measured numbers. **No metric appears here or anywhere until a real run
 produced it.**
 
+### Results so far (real, measured)
+
+ConvNeXt-V2-Base on **NABirds** (555 fine-grained classes), trained on an RTX 3060:
+
+| Metric | Test (24,633 imgs) |
+|--------|-------------------:|
+| Top-1  | **89.00%** |
+| Top-5  | **98.78%** |
+| Macro-F1 | 0.869 |
+
+Full detail in [`results/`](results/RESULTS.md). Remaining: Grad-CAM/error analysis,
+OOD test on the author's own photos, ONNX optimization, and the full-stack app +
+deployment (see `docs/PHASE_SUMMARIES.md`).
+
 ## Quickstart
 
 ### 1. Install

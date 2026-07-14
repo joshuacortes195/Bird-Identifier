@@ -1,0 +1,51 @@
+# Results — NABirds fine-grained bird classifier
+
+All numbers below are from **real runs** on the training box (RTX 3060, 12 GB).
+
+## Model
+
+- **Backbone:** ConvNeXt-V2-Base (ImageNet-22k pretrained), linear head
+- **Recipe:** 224px, batch 32 × grad-accum 2 (eff. 64), **bfloat16 AMP**, AdamW,
+  cosine LR + 2-epoch warmup, label smoothing 0.1, Mixup/CutMix, EMA, 30 epochs
+- **Params:** 88.3 M
+- **Training time:** ~30 epochs × ~6.5 min = **~3.3 h**
+
+## Headline metrics
+
+| Metric | Val (2,410 imgs) | **Test (24,633 imgs)** |
+|--------|-----------------:|-----------------------:|
+| Top-1  | 91.58% | **89.00%** |
+| Top-5  | 99.38% | **98.78%** |
+| Macro-F1 | — | 0.869 |
+| Mean per-class acc | — | 0.867 |
+| ECE (calibration) | — | 0.134 |
+
+- 555 fine-grained categories (NABirds visual categories, incl. plumage/sex splits).
+- Best epoch selected by EMA val top-1.
+- **Calibration:** ECE 0.134 → mildly over-confident; temperature scaling is an easy
+  follow-up (planned in the Phase 6 interpretability pass).
+
+## Files
+
+- `nabirds_test_metrics.json` — full metrics incl. worst classes + most-confused pairs
+- `test_confusion_matrix.png` — row-normalized confusion matrix (555×555)
+- `test_reliability.png` — reliability diagram (calibration)
+- `nabirds_base_training_history.csv` — per-epoch train/val curves
+- `nabirds_eda_report.md` — dataset EDA summary
+
+## Reproduce
+
+```bash
+python scripts/download_data.py --dataset nabirds
+python scripts/train.py data=nabirds model=convnextv2_base train=baseline
+python scripts/evaluate.py --dataset nabirds --split test
+```
+
+## Not yet done (next steps)
+
+- **Phase 6 (interpretability):** Grad-CAM overlays + written error analysis (metrics done).
+- **Phase 7 (OOD):** evaluate on the photographer's own A7IV shots — **blocked** until
+  labeled photos are added to `my_photos/`.
+- **Phase 8 (optimization):** ONNX export + quantization + latency benchmarks (CPU-side;
+  runs on any machine once the checkpoint is available).
+- **Ablations:** bbox-crop / higher-res / TTA deltas — additional training runs.
