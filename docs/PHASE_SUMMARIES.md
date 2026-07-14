@@ -175,3 +175,41 @@ so the torch-free submodules (`taxonomy`, `imageio`) import without torch.
 **Next:** Phase 10 — the React/TS/Vite/Tailwind web app against this contract.
 
 ---
+
+## Phase 10 — Cross-device web app ✅ (built ahead of order)
+
+React 19 · TypeScript (strict) · Vite 6 · Tailwind 4, in `frontend/`. Talks to the Phase 9
+API through a fully-typed client (no `any`); API base URL from `VITE_API_BASE_URL`.
+
+- **Upload from anywhere:** drag-and-drop + file picker on desktop; a `capture` camera path
+  on mobile (`accept="image/*"`). **Client-side prep** (`lib/image.ts`) downscales/compresses
+  to ≤1600px JPEG via canvas before upload (faster on cellular); HEIC passes through untouched
+  for the server to decode. Preview thumbnail shown.
+- **Results UI:** best-match hero (common + scientific name, confidence bar), ranked "other
+  possibilities" with bars + percentages, a low-confidence banner below threshold, a
+  **"What did it see?" Grad-CAM overlay** toggle with an opacity slider (fetches
+  `include_gradcam=true` on demand; shows an honest "unavailable from this backend" note until
+  the torch backend from Phase 6 is wired), a species "Learn more" link, and a model/latency
+  chip. Explicit loading (skeleton), error (with retry), and empty states. In-session recent
+  uploads.
+- **Design system** (via the ui-ux-pro-max skill): minimal single-column, content-first,
+  micro-interactions. Photo-forward **dark-first theme with an emerald accent** (+ full light
+  mode), Newsreader serif wordmark / Inter UI. Semantic Tailwind-v4 tokens, no-flash theme
+  init, manual toggle. Accessibility: visible focus rings, `prefers-reduced-motion`,
+  ≥44px targets, SVG-only icons (no emoji), confidence never by color alone.
+- **Verified (real):** `npm run build` passes strict `tsc` + Vite (67 KB gzipped JS). Drove
+  the full **upload → identify** flow in headless Chrome against the live stub API and captured
+  screenshots at **desktop dark, desktop light, and 390px phone** — best-match, shortlist,
+  low-confidence banner, Grad-CAM toggle, reset, and error states all render correctly; the
+  555-class count and latency flow through from the API. CORS confirmed (a deliberate origin
+  mismatch produced the expected `network_error` state, then fixed).
+
+**Files:** `frontend/` — `package.json`, Vite/TS/Tailwind config, `index.html`,
+`src/{main,App}.tsx`, `src/api/{client,types}.ts`, `src/lib/image.ts`,
+`src/hooks/usePredict.ts`, `src/components/*`, `src/icons/index.tsx`, `src/index.css`,
+`.env.example`, `README.md`.
+
+**Next:** Phases 6 (eval/interpretability incl. real Grad-CAM) and 8 (ONNX export) — torch
+code written against the interfaces, to run on the PC/CI once the Phase 5 checkpoint lands.
+
+---
