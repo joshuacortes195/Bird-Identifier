@@ -18,8 +18,8 @@ class_weighted_loss: false
 transform:
   image_size: 224
   resize_ratio: 1.14
-  randaugment: true
+  randaugment: false         # keep it easy to overfit for the smoke test
   rand_aug_n: 2
   rand_aug_m: 9
   hflip: true
-  random_erasing: 0.0        # keep it easy to overfit for the smoke test
+  random_erasing: 0.0

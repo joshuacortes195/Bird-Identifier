@@ -101,3 +101,34 @@ stats, sample grid, `report.md`. Hardest-confusable pairs deferred to Phase 6 (n
 subset overfit smoke test. (GPU work begins.)
 
 ---
+
+## Phase 3 — Baseline training loop + smoke test ✅
+
+- **Model factory** over timm backbones as pooled feature extractors + a **pluggable
+  `Head`** (registry seam #4): `LinearHead` ships; `HierarchicalHead` is a stub that
+  raises `NotImplementedError`. Head output dim = `taxonomy.num_classes` (never 555).
+  Configs: `model/{convnextv2_base,nano,atto}.yaml`, `head/{linear,hierarchical}.yaml`.
+- **Training loop:** AMP, gradient accumulation, AdamW (no-decay on norms/bias),
+  cosine LR + linear warmup, label smoothing, Mixup/CutMix, optional EMA, checkpoint
+  (best+last, with config+git-hash+metrics embedded), early stopping, resume.
+- **Smoke test (real):** `python scripts/train.py` overfits the 10-class subset —
+  **train loss 2.30 → 0.013, val top-1 0.93, top-5 1.00** in 20 epochs on the RTX 3060.
+  Proves the loop is correct before scaling.
+
+**Bug found + fixed (AMP):** the initial fp16 `GradScaler` path silently **skipped ~60%
+of optimizer steps** (persistent fp16 overflow on convnextv2), pinning loss at ln(10).
+Isolated it by proving the fp32 loop learns (val 0.90), then switched AMP to **bfloat16**
+on Ampere (fp32 dynamic range, no loss scaling needed). fp16+scaler retained as fallback
+where bf16 is unavailable. This matters for Phase 5 — the full run relies on this path.
+
+- **Tests:** 30 passing (added model-forward/head-output-dim, hierarchical-stub raises,
+  scheduler warmup→decay, one-step loss decrease, checkpoint round-trip).
+
+**Files:** `models/{factory,heads}.py`, `train/{loop,optim,ema,tracking}.py`,
+`utils/checkpoint.py`, `scripts/train.py`, `configs/{model,head,train}/*.yaml`,
+`tests/{test_model_heads,test_train_core}.py`.
+
+**Next (GATE):** Phase 4 (tracking) is wired (local JSONL + optional W&B). Phase 5 is the
+long full-NABirds run — **needs user OK on compute** before kicking off (~3h estimate).
+
+---

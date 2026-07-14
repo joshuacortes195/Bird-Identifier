@@ -1,0 +1,6 @@
+# STUB (future seam) — coarse supercategory router -> per-group specialists.
+# Selecting this raises NotImplementedError in the bird build. Left so the factory
+# already supports head selection by config. See docs/EXTENSIBILITY.md.
+name: hierarchical
+head_kwargs:
+  num_supercategories: 1

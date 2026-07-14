@@ -1,0 +1,19 @@
+# Smoke recipe: prove the loop can overfit a tiny subset (loss->0, acc->100%).
+epochs: 20
+grad_accum: 1
+amp: true
+label_smoothing: 0.0        # make it easy to drive loss to ~0
+clip_grad: 5.0              # loose: natural grad norms here are ~30 early on
+ema: false
+early_stop_patience: null
+log_interval: 5
+
+mixup_alpha: 0.0
+cutmix_alpha: 0.0
+mixup_prob: 0.0
+
+optim:
+  lr: 1.0e-3
+  weight_decay: 0.0
+  warmup_epochs: 1.0
+  min_lr_ratio: 0.05

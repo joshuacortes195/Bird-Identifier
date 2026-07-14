@@ -1,0 +1,22 @@
+# Baseline full-data recipe (fine-grained defaults). Tune per ablation in Phase 5.
+epochs: 30
+grad_accum: 2               # effective batch 64 at data.batch_size=32
+amp: true
+label_smoothing: 0.1
+clip_grad: 1.0
+ema: true
+ema_decay: 0.9998
+early_stop_patience: 8
+log_interval: 50
+
+# Mixup/CutMix on for regularization on the full dataset.
+mixup_alpha: 0.2
+cutmix_alpha: 1.0
+mixup_prob: 0.5
+
+optim:
+  lr: 3.0e-4
+  weight_decay: 0.05
+  layer_decay: null         # set e.g. 0.75 in a Phase 5 ablation
+  warmup_epochs: 2.0
+  min_lr_ratio: 0.01

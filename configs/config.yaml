@@ -1,22 +1,31 @@
-# Top-level Hydra config. Subtrees (data/model/head/taxonomy/train) are populated
-# across Phases 1-5. Defaults are composed here; override anything on the CLI, e.g.:
-#   python scripts/train.py train=smoke data=subset model=convnextv2_base
+# Top-level Hydra config. Compose subtrees below; override anything on the CLI, e.g.:
+#   python scripts/train.py train=smoke data=subset model=convnextv2_atto
+#   python scripts/train.py data=nabirds model=convnextv2_base train=baseline
 defaults:
   - _self_
-  # - taxonomy: birds        # enabled in Phase 1
-  # - data: nabirds          # enabled in Phase 1
-  # - model: convnextv2_base # enabled in Phase 3
-  # - head: linear           # enabled in Phase 3
-  # - train: baseline        # enabled in Phase 3
+  - data: subset
+  - model: convnextv2_atto
+  - head: linear
+  - train: smoke
 
 # --- Global run settings ---
 seed: 42
 deterministic: false
 output_dir: outputs
 device: auto            # auto -> cuda if available else cpu
+run_name: null          # defaults to <data>-<model>-<timestamp> if unset
 
 # --- Experiment tracking (Phase 4) ---
 tracking:
-  backend: local        # local | wandb
+  backend: local        # local | wandb | none
   project: wildlife-classifier
   entity: null
+
+# Keep the working directory stable so repo-relative data paths resolve.
+hydra:
+  job:
+    chdir: false
+  run:
+    dir: ${output_dir}/hydra/${now:%Y-%m-%d_%H-%M-%S}
+  sweep:
+    dir: ${output_dir}/hydra/multirun/${now:%Y-%m-%d_%H-%M-%S}

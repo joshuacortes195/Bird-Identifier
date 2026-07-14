@@ -1,0 +1,5 @@
+# Full-run backbone tier (RTX 3060 12GB @ 224px). ImageNet-22k pretrained.
+backbone: convnextv2_base.fcmae_ft_in22k_in1k
+pretrained: true
+drop_rate: 0.0
+drop_path_rate: 0.1
