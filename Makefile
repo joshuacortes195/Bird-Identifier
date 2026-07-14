@@ -5,7 +5,7 @@
 PYTHON ?= python
 PKG    := src/wildlife scripts tests
 
-.PHONY: help install install-cpu install-cuda lint fmt test test-fast smoke train eval serve demo export clean
+.PHONY: help install install-cpu install-cuda lint fmt test test-fast smoke train eval serve serve-dev demo export clean
 
 help:
 	@echo "Targets: install install-cpu install-cuda lint fmt test smoke train eval serve demo export clean"
@@ -14,7 +14,7 @@ help:
 # (see install-cpu / install-cuda) because the wheel differs per platform.
 install:
 	$(PYTHON) -m pip install -U pip
-	$(PYTHON) -m pip install -e ".[dev,serve,optimize,tracking]"
+	$(PYTHON) -m pip install -e ".[dev,serve,optimize,tracking,demo]"
 
 install-cuda:
 	$(PYTHON) -m pip install torch torchvision --index-url https://download.pytorch.org/whl/cu124
@@ -50,6 +50,11 @@ export:
 
 serve:
 	$(PYTHON) -m uvicorn wildlife.serve.app:app --host 0.0.0.0 --port 8000
+
+# Local dev: serve with the deterministic stub predictor (no model file needed).
+serve-dev:
+	WILDLIFE_ALLOW_STUB=1 WILDLIFE_TAXONOMY=configs/taxonomy/birds.yaml \
+	$(PYTHON) -m uvicorn wildlife.serve.app:app --host 0.0.0.0 --port 8000 --reload
 
 demo:
 	$(PYTHON) -m wildlife.serve.gradio_demo
