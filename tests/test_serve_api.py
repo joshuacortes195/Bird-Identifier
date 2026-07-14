@@ -141,6 +141,36 @@ def test_cors_header_for_allowed_origin():
         assert r.headers.get("access-control-allow-origin") == "http://localhost:5173"
 
 
+class _GradcamStub(StubPredictor):
+    """A predictor that claims Grad-CAM support and returns a fixed overlay."""
+
+    OVERLAY = "aGVsbG8="  # base64("hello")
+
+    @property
+    def supports_gradcam(self) -> bool:
+        return True
+
+    def gradcam_png(self, img, target_category=None):
+        return self.OVERLAY
+
+
+def test_gradcam_returned_when_backend_supports_and_requested():
+    cfg = ServeConfig(allow_stub=True, rate_limit_per_minute=0)
+    app = create_app(config=cfg, predictor=_GradcamStub(_taxonomy()))
+    with TestClient(app) as client:
+        img = _png_bytes()
+        with_cam = client.post(
+            "/predict",
+            files={"file": ("a.png", img, "image/png")},
+            data={"include_gradcam": "true"},
+        ).json()
+        assert with_cam["gradcam_png_base64"] == _GradcamStub.OVERLAY
+
+        # Not requested -> null even though the backend supports it.
+        without = client.post("/predict", files={"file": ("a.png", img, "image/png")}).json()
+        assert without["gradcam_png_base64"] is None
+
+
 def test_production_refuses_stub_without_flag():
     # No model file + allow_stub False -> build_predictor raises at startup.
     cfg = ServeConfig(allow_stub=False, model_path=None)
