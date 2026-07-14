@@ -213,3 +213,37 @@ API through a fully-typed client (no `any`); API base URL from `VITE_API_BASE_UR
 code written against the interfaces, to run on the PC/CI once the Phase 5 checkpoint lands.
 
 ---
+
+## Phase 6 — Evaluation & interpretability ✅ (code complete; report awaits checkpoint)
+
+- **Metrics + calibration in NumPy** (`eval/metrics.py`, `eval/calibration.py`): top-1/top-5,
+  macro-F1, per-class accuracy, confusion matrix, most-confused species pairs, and ECE/MCE +
+  reliability bins. Deliberately torch-free so they run in CI and are **unit-tested here** —
+  `tests/test_eval_metrics.py`, 6 tests, hand-checked values (macro-F1, per-class recall with
+  absent classes, top-k, ECE, over-confidence flag). Class count flows from the logits width.
+- **Grad-CAM** (`eval/gradcam.py`, torch + pytorch-grad-cam): picks the last ConvNeXt conv
+  stage, computes a heatmap, composites a jet overlay, and — key for the app — a
+  `gradcam_png_base64()` that the torch serving backend returns to the web app.
+- **`scripts/evaluate.py`** (Hydra, mirrors `train.py`): loads a checkpoint (prefers EMA
+  weights), runs the test split, and writes `outputs/eval/<run>/` — `report.md` (headline
+  metrics, hardest classes, confused pairs), `reliability.png`, `confusion_matrix.png/.npy`,
+  and `gradcam_samples.png` (correct vs. incorrect).
+- **Closed the Grad-CAM loop to the app:** added `TorchPredictor` to the serve layer
+  (`supports_gradcam=True`, rebuilds the model from the checkpoint's embedded config) and a
+  `gradcam_png` method on the `Predictor` interface; `app.py` now returns the base64 overlay
+  when a capable backend is loaded and the client asks. Verified the **app plumbing** with a
+  fake gradcam-capable predictor (`tests/test_serve_api.py`): overlay returned when requested,
+  null otherwise. ONNX/stub backends return null (torch-free image stays lean).
+
+**Not runnable on this Mac** (no torch wheel for Intel/py3.14): `gradcam.py`, `evaluate.py`,
+and `TorchPredictor`'s model-loading are written against `utils/checkpoint.py`'s schema and
+the timm factory but must be validated against the first real Phase 5 checkpoint — flagged in
+code. The metric math they call is the same code the unit tests cover.
+
+**Files:** `eval/{metrics,calibration,gradcam}.py`, `scripts/evaluate.py`,
+`serve/{predictor,app}.py` (Grad-CAM wiring + TorchPredictor), `tests/test_eval_metrics.py`,
+`tests/test_serve_api.py` (gradcam plumbing test).
+
+**Next:** Phase 8 — ONNX export + parity check + quantization + benchmark table.
+
+---

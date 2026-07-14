@@ -236,8 +236,14 @@ def create_app(config: ServeConfig | None = None, predictor: Predictor | None = 
         ]
         top = out[0]
         gradcam_b64: str | None = None
-        if include_gradcam and not pred.supports_gradcam:
-            logger.info("gradcam requested but backend does not support it; returning null")
+        if include_gradcam:
+            if pred.supports_gradcam:
+                try:
+                    gradcam_b64 = pred.gradcam_png(img)
+                except Exception:  # noqa: BLE001 - overlay is best-effort, never fail the prediction
+                    logger.exception("gradcam generation failed; returning null overlay")
+            else:
+                logger.info("gradcam requested but backend does not support it; returning null")
 
         return PredictResponse(
             predictions=out,

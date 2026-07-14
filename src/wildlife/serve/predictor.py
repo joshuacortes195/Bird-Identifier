@@ -56,6 +56,10 @@ class Predictor(Protocol):
     @property
     def supports_gradcam(self) -> bool: ...
 
+    def gradcam_png(self, img: Image.Image, target_category: int | None = None) -> str | None:
+        """Base64 PNG attention overlay, or None if unsupported."""
+        ...
+
 
 def _softmax(logits: np.ndarray) -> np.ndarray:
     logits = logits.astype(np.float64)
@@ -123,6 +127,9 @@ class OnnxPredictor:
         # not the frozen ONNX graph. The API reports this so the UI can hide the toggle.
         return False
 
+    def gradcam_png(self, img: Image.Image, target_category: int | None = None) -> str | None:
+        return None
+
 
 class StubPredictor:
     """Deterministic, model-free predictions for local dev / API contract tests.
@@ -163,6 +170,92 @@ class StubPredictor:
     def supports_gradcam(self) -> bool:
         return False
 
+    def gradcam_png(self, img: Image.Image, target_category: int | None = None) -> str | None:
+        return None
+
+
+class TorchPredictor:
+    """PyTorch backend — the only one that can produce Grad-CAM overlays.
+
+    Heavier than ONNX (pulls torch/timm), so it's for a torch-enabled deployment or local
+    use, not the lean serving image. Rebuilds the model from the checkpoint's embedded config
+    and class list. NOTE: this integration must be validated against the first real Phase 5
+    checkpoint — it is written against the checkpoint schema in ``utils/checkpoint.py`` but
+    has not been exercised end-to-end on this dev box (no torch wheel here).
+    """
+
+    def __init__(
+        self,
+        checkpoint_path: str | Path,
+        taxonomy: Taxonomy,
+        *,
+        preprocess_cfg: PreprocessConfig | None = None,
+        device: str = "cpu",
+        name: str = "torch-model",
+    ) -> None:
+        import torch
+
+        from wildlife.data.transforms import TransformConfig, build_eval_transform
+        from wildlife.models.factory import ModelConfig, build_model
+        from wildlife.utils.checkpoint import load_checkpoint
+
+        self.torch = torch
+        self.taxonomy = taxonomy
+        self.pre = preprocess_cfg or PreprocessConfig()
+        self.device = torch.device(device)
+
+        ckpt = load_checkpoint(checkpoint_path, map_location=device)
+        model_cfg_dict = (ckpt.get("config") or {}).get("model", {})
+        model_cfg = ModelConfig(
+            backbone=model_cfg_dict.get("backbone", ModelConfig.backbone),
+            pretrained=False,  # weights come from the checkpoint
+            head=model_cfg_dict.get("head", "linear"),
+            head_kwargs=model_cfg_dict.get("head_kwargs", {}) or {},
+            drop_rate=model_cfg_dict.get("drop_rate", 0.0),
+            drop_path_rate=model_cfg_dict.get("drop_path_rate", 0.0),
+        )
+        self.model = build_model(model_cfg, num_classes=len(taxonomy))
+        self.model.load_state_dict(ckpt["model"])
+        self.model.eval().to(self.device)
+
+        self._transform = build_eval_transform(
+            TransformConfig(
+                image_size=self.pre.image_size,
+                resize_ratio=self.pre.resize_ratio,
+                mean=self.pre.mean,
+                std=self.pre.std,
+            )
+        )
+        self.info = ModelInfo(
+            name=name,
+            backend="torch",
+            num_classes=len(taxonomy),
+            input_size=self.pre.image_size,
+        )
+
+    def _tensor(self, img: Image.Image):
+        return self._transform(img.convert("RGB")).unsqueeze(0).to(self.device)
+
+    def predict(self, img: Image.Image, top_k: int = 5) -> list[Prediction]:
+        x = self._tensor(img)
+        with self.torch.no_grad():
+            logits = self.model(x)[0].cpu().numpy()
+        return _rank(_softmax(logits), self.taxonomy, top_k)
+
+    @property
+    def supports_gradcam(self) -> bool:
+        return True
+
+    def gradcam_png(self, img: Image.Image, target_category: int | None = None) -> str | None:
+        from wildlife.eval.gradcam import gradcam_png_base64
+
+        base = img.convert("RGB")
+        x = self._tensor(base)
+        if target_category is None:
+            with self.torch.no_grad():
+                target_category = int(self.model(x)[0].argmax().item())
+        return gradcam_png_base64(self.model, x, base, target_category=target_category)
+
 
 def build_predictor(
     *,
@@ -180,8 +273,11 @@ def build_predictor(
     taxonomy = load_taxonomy(taxonomy_path)
     path = Path(model_path) if model_path else None
 
-    if path and path.exists() and path.suffix == ".onnx":
-        return OnnxPredictor(path, taxonomy, preprocess_cfg=preprocess_cfg, name=path.stem)
+    if path and path.exists():
+        if path.suffix == ".onnx":
+            return OnnxPredictor(path, taxonomy, preprocess_cfg=preprocess_cfg, name=path.stem)
+        if path.suffix in {".pt", ".pth"}:
+            return TorchPredictor(path, taxonomy, preprocess_cfg=preprocess_cfg, name=path.stem)
 
     if allow_stub:
         return StubPredictor(taxonomy)
