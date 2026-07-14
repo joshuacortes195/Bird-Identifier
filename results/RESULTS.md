@@ -41,6 +41,32 @@ python scripts/train.py data=nabirds model=convnextv2_base train=baseline
 python scripts/evaluate.py --dataset nabirds --split test
 ```
 
+## Optimization (Phase 8) — real CPU benchmark, batch=1
+
+Exported `best.pt` → ONNX (opset 17, legacy exporter); PyTorch↔ONNXRuntime parity
+verified within 1e-3. Dynamic INT8 quantization applied.
+
+| Variant | Size (MB) | p50 (ms) | p95 (ms) | Throughput (img/s) |
+|---------|----------:|---------:|---------:|-------------------:|
+| PyTorch CPU | 336.7 | 198 | 216 | 5.0 |
+| **ONNX fp32** | 336.9 | **145** | 153 | **6.9** |
+| ONNX int8 | **85.6** | 503 | 535 | 2.0 |
+
+**Finding (honest):** ONNX fp32 is the fastest (1.4× over PyTorch). Dynamic INT8 shrinks
+the model **4×** (85.6 MB) but *regresses* latency — a known effect for conv-heavy
+ConvNeXt on CPU (per-op quant/dequant overhead without fast int8 conv kernels). So the
+**fp32 ONNX is the serving default**; int8 is only preferable when disk/memory is the hard
+constraint. Artifacts: `outputs/serving/{model.onnx, model.int8.onnx}` (git-ignored, large).
+
+## Serving (Phase 9) — validated with the real model
+
+FastAPI (`POST /predict` multipart, `GET /health`) loads the ONNX model once at startup;
+preprocessing is pure NumPy (torch-free serving image). Validated on random NABirds test
+images: **6/8 top-1** (matches 89% test acc); the 2 misses had the true species as the #2
+prediction (Cordilleran vs Least Flycatcher; Cassin's vs Plumbeous Vireo — genuinely hard
+pairs). Note: scientific names are `null` (NABirds has none) — a common→scientific mapping
+is a small follow-up.
+
 ## Not yet done (next steps)
 
 - **Phase 6 (interpretability):** Grad-CAM overlays + written error analysis (metrics done).

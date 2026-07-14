@@ -63,7 +63,14 @@ def main(cfg: DictConfig) -> None:
     model = build_model(mcfg, num_classes)
 
     ckpt = load_checkpoint(checkpoint, map_location="cpu")
-    state = ckpt.get("ema") or ckpt["model"]
+    # ModelEma stores weights under a "module." prefix — strip it before loading.
+    ema_state = ckpt.get("ema")
+    if ema_state:
+        state = {
+            k.removeprefix("module."): v for k, v in ema_state.items() if k.startswith("module.")
+        }
+    else:
+        state = ckpt["model"]
     model.load_state_dict(state)
     model.eval()
     log.info("Loaded %s | %d classes | input %d", checkpoint, num_classes, input_size)

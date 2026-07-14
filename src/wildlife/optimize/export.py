@@ -34,6 +34,9 @@ def export_onnx(
         dynamic_axes={"input": {0: "batch"}, "logits": {0: "batch"}},
         opset_version=opset,
         do_constant_folding=True,
+        # Legacy TorchScript exporter: mature for CNNs, deterministic across platforms,
+        # and avoids the dynamo exporter's onnxscript dep + unicode console prints.
+        dynamo=False,
     )
     return output_path
 
