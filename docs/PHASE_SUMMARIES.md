@@ -339,23 +339,20 @@ transfers them out-of-band or CI regenerates via `scripts/export.py`.
 
 ---
 
-## OVERNIGHT STATUS (2026-07-14, resume tomorrow) 🌙
+## STATUS (2026-07-14) — overnight ablations CANCELLED per user
 
-**Running detached (survives agent limits + Claude Code closing):** `scripts/run_ablations.py`
-(PID recorded in `outputs/ablations/orchestrator.pid`). It trains + test-evaluates two
-ablations sequentially and appends to `results/ablation_table.md` after each:
-1. `bbox_crop_224` — crop-to-subject lever (~3.3 h) — **started, training confirmed**.
-2. `res288` — higher input resolution, batch 16 × accum 4 (~4–5 h).
+The optional ablation runs were **cancelled** (not run). `scripts/run_ablations.py` remains
+as a ready tool — `python scripts/run_ablations.py` runs bbox-crop + 288px ablations and
+fills `results/ablation_table.md` — but the ablation table currently holds only the
+baseline reference row. AC sleep restored to default (PC may sleep normally again).
 
-Power: AC sleep/hibernate disabled (`powercfg`). **Do NOT sleep the PC** — sleep suspends
-the training. Display-off is fine. (`claude-auto-retry` was NOT usable — it needs tmux,
-which Windows lacks; the detached job makes it unnecessary anyway.)
+**Project state: Phases 0–6, 8, 9, 10, 12 are DONE and pushed** on branch
+`phase-6-10-fullstack`. The two remaining phases both need the user:
+- **Phase 7 (OOD test):** ingest path is built (`docs/OOD.md`) — needs labeled photos in
+  `my_photos/<species>/*.jpg`, then `python scripts/ood_eval.py`.
+- **Phase 11 (deploy):** API + frontend are deploy-ready (`docs/DEPLOY.md`, `netlify.toml`,
+  torch-free Dockerfile) — needs Netlify + a CPU API-host account (HF Spaces/Render/Fly),
+  and the model artifact transferred/regenerated on the host.
 
-**To resume tomorrow:**
-1. Check `results/ablation_table.md` (final numbers) + `outputs/ablations/*.log`.
-2. Commit the ablation table + any interpretation; push.
-3. Remaining phases: **7 (OOD — needs your labeled photos in `my_photos/`)** and
-   **11 (deploy — needs your Netlify + API-host accounts)**. Everything else (0–6, 8, 9,
-   10, 12) is done and pushed on branch `phase-6-10-fullstack`.
-4. Optional: fast-forward `main` to this branch once ablations land.
+Optional cleanup later: fast-forward `main` to this branch.
 
