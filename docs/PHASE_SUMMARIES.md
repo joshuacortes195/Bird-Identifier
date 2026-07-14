@@ -247,3 +247,31 @@ code. The metric math they call is the same code the unit tests cover.
 **Next:** Phase 8 — ONNX export + parity check + quantization + benchmark table.
 
 ---
+
+## Phase 8 — Optimization: ONNX, quantization, benchmarking ✅ (code complete; numbers await checkpoint)
+
+- **`optimize/export.py`:** `export_onnx` (dynamic batch axis, opset 17) + `verify_parity`
+  (max |Δ| between torch and ONNX Runtime logits, asserts ≤ tol) + `file_size_mb`.
+- **`optimize/quantize.py`:** dynamic int8 (weight-only, no calibration — the pragmatic CPU
+  default) and a static/calibrated path behind a `CalibrationDataReader`.
+- **`optimize/benchmark.py`:** `benchmark_callable` (warmup + timed loop over any inference
+  closure), `summarize_latencies` (p50/p95/mean/throughput), and `render_table` (markdown
+  comparison). The **stats + table are pure Python and unit-tested** — 3 tests with
+  hand-computed percentiles (p50=25, p95=38.5 for [10,20,30,40] ms) and em-dash handling.
+- **`scripts/export.py`** (Hydra): load checkpoint (prefers EMA) → `outputs/serving/model.onnx`
+  → verify parity → `model.int8.onnx` → optional `+benchmark=true` writes
+  `outputs/serving/benchmark.md` (pytorch-cpu vs onnx-fp32 vs onnx-int8: size, p50/p95,
+  throughput). `model.onnx` is exactly what the lean Phase 9 Docker image serves.
+
+Torch/ONNX export + quantization run on the CI/serving box (no torch/onnxruntime wheel on
+this Intel/py3.14 Mac); the timing math they use is the tested code. `make export` wired.
+
+**Files:** `optimize/{export,quantize,benchmark}.py`, `scripts/export.py`,
+`tests/test_optimize_bench.py`.
+
+**Pre-checkpoint work complete.** Remaining phases are gated on you: Phase 5 finishing (the
+checkpoint), Phase 7 (your A7IV photos), Phase 11 (hosting accounts), Phase 12 (final README
+with the real numbers). Everything above drops in behind the stable interfaces once the
+checkpoint lands.
+
+---
