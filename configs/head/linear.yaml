@@ -1,0 +1,4 @@
+# Linear classification head (shipped). Output dim comes from the taxonomy.
+name: linear
+head_kwargs:
+  dropout: 0.0

@@ -1,0 +1,5 @@
+# Mid-size backbone for fast iteration / lower VRAM. ImageNet-22k pretrained.
+backbone: convnextv2_nano.fcmae_ft_in22k_in1k
+pretrained: true
+drop_rate: 0.0
+drop_path_rate: 0.1

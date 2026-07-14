@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """Benchmark a dataloader (imgs/sec) and dump a post-augmentation batch grid.
 
-    python scripts/benchmark_loader.py --data cub --split train --batches 20
+python scripts/benchmark_loader.py --data cub --split train --batches 20
 """
 
 from __future__ import annotations
@@ -52,7 +52,9 @@ def main() -> int:
     first = next(it)  # warm up workers
     class_names = loader.dataset.taxonomy.class_names
     out_dir = REPO_ROOT / "outputs" / "eda" / args.data
-    grid = save_batch_grid(first["image"], first["label"], class_names, out_dir / "batch_grid.png", tcfg=tcfg)
+    grid = save_batch_grid(
+        first["image"], first["label"], class_names, out_dir / "batch_grid.png", tcfg=tcfg
+    )
 
     n_imgs = first["image"].size(0)
     t0 = time.perf_counter()
