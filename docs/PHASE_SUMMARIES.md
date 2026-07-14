@@ -132,3 +132,46 @@ where bf16 is unavailable. This matters for Phase 5 — the full run relies on t
 long full-NABirds run — **needs user OK on compute** before kicking off (~3h estimate).
 
 ---
+
+## Phase 9 — Production inference API ✅ (built ahead of order)
+
+**Why out of order:** built on a Mac (Intel, Python 3.14) *while Phase 5 trains on the
+RTX 3060 PC*. Modern torch has no wheel for this box, so the GPU-bound phases (5–8) can't
+run here — but the serve + web layers don't need the GPU, only the stable model
+*interface*. So Phase 9 (and 10 next) were built first; Phases 6/8 torch code slots in
+behind the same interfaces when the checkpoint lands. On a feature branch
+(`phase-6-10-fullstack`), **not pushed to main**, so the PC's Phase 5 push stays clean.
+
+- **Torch-free serving path.** The API runs on **ONNX Runtime + Pillow + NumPy** (no
+  torch/timm/hydra), keeping the deploy image small for free-tier CPU hosts.
+  `serve/preprocess.py` reimplements the eval transform (resize→center-crop→ImageNet
+  norm) in pure NumPy; a torch-gated parity test pins it to `build_eval_transform`.
+- **`Predictor` interface** (`serve/predictor.py`): `OnnxPredictor` (production, lazy
+  `onnxruntime` import) and `StubPredictor` (deterministic, model-free — lets the frontend
+  and contract be tested before a checkpoint exists). Prod refuses the stub unless
+  `WILDLIFE_ALLOW_STUB=1`, so it never silently serves fake predictions.
+- **FastAPI app** (`serve/app.py`): model loaded once at startup (lifespan); `POST
+  /predict` (multipart) → ranked top-k JSON with common/scientific name, confidence,
+  `low_confidence` flag, inference time; `GET /health`. HEIC/HEIF + EXIF via the existing
+  `load_image_from_bytes`; capped/chunked upload read (413), content-type gate (415),
+  undecodable reject (422), server-side downscale, per-IP rate limit (429), CORS locked to
+  configured origins, structured JSON logs. Config is 12-factor via env (`serve/config.py`).
+- **num_classes flows from the taxonomy** — live `/health` reports 555 for `birds.yaml`,
+  never hardcoded. Grad-CAM overlay field is in the contract; returns null for ONNX/stub
+  (needs the torch model from Phase 6) so the UI can hide the toggle.
+- **Verified (real):** `uvicorn` boots against the 555-class taxonomy; `curl` upload
+  returns sensible ranked JSON; `/health` OK; 415 on non-image. **12 API/preprocess tests
+  pass** (1 torch-parity test skips here, runs on PC/CI).
+
+**Also:** lean torch-free `Dockerfile`; `make serve-dev` (stub) + `serve` (real);
+optional Gradio demo split into a `demo` extra; `docs/API.md` documents the full contract.
+Small enabling change: `wildlife/data/__init__.py` dataset registration is now best-effort
+so the torch-free submodules (`taxonomy`, `imageio`) import without torch.
+
+**Files:** `serve/{preprocess,predictor,config,app,gradio_demo}.py`,
+`tests/{test_serve_api,test_serve_preprocess}.py`, `Dockerfile`, `Makefile`, `tasks.ps1`,
+`pyproject.toml`, `docs/API.md`, `data/__init__.py`.
+
+**Next:** Phase 10 — the React/TS/Vite/Tailwind web app against this contract.
+
+---
