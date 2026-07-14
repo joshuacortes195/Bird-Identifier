@@ -22,8 +22,10 @@ All numbers below are from **real runs** on the training box (RTX 3060, 12 GB).
 
 - 555 fine-grained categories (NABirds visual categories, incl. plumage/sex splits).
 - Best epoch selected by EMA val top-1.
-- **Calibration:** ECE 0.134 → mildly over-confident; temperature scaling is an easy
-  follow-up (planned in the Phase 6 interpretability pass).
+- **Calibration:** raw test ECE 0.134. **Temperature scaling** (T=0.717, fit on val)
+  cuts it to **0.037** — a 3.6× improvement, accuracy unchanged. See `calibration.md`.
+- **Interpretability:** Grad-CAM overlays (`gradcam_samples.png`) confirm the model
+  attends to the bird, not background; confusion matrix + reliability diagram included.
 
 ## Files
 
