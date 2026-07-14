@@ -338,3 +338,24 @@ Phase 12 docs. Serving artifacts (`outputs/serving/*.onnx`) are git-ignored/larg
 transfers them out-of-band or CI regenerates via `scripts/export.py`.
 
 ---
+
+## OVERNIGHT STATUS (2026-07-14, resume tomorrow) 🌙
+
+**Running detached (survives agent limits + Claude Code closing):** `scripts/run_ablations.py`
+(PID recorded in `outputs/ablations/orchestrator.pid`). It trains + test-evaluates two
+ablations sequentially and appends to `results/ablation_table.md` after each:
+1. `bbox_crop_224` — crop-to-subject lever (~3.3 h) — **started, training confirmed**.
+2. `res288` — higher input resolution, batch 16 × accum 4 (~4–5 h).
+
+Power: AC sleep/hibernate disabled (`powercfg`). **Do NOT sleep the PC** — sleep suspends
+the training. Display-off is fine. (`claude-auto-retry` was NOT usable — it needs tmux,
+which Windows lacks; the detached job makes it unnecessary anyway.)
+
+**To resume tomorrow:**
+1. Check `results/ablation_table.md` (final numbers) + `outputs/ablations/*.log`.
+2. Commit the ablation table + any interpretation; push.
+3. Remaining phases: **7 (OOD — needs your labeled photos in `my_photos/`)** and
+   **11 (deploy — needs your Netlify + API-host accounts)**. Everything else (0–6, 8, 9,
+   10, 12) is done and pushed on branch `phase-6-10-fullstack`.
+4. Optional: fast-forward `main` to this branch once ablations land.
+
