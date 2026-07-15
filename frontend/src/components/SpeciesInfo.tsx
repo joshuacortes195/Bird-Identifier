@@ -28,17 +28,7 @@ export function SpeciesInfo({ commonName }: { commonName: string }) {
 
   return (
     <div className="space-y-4 rounded-2xl border border-border bg-surface p-5 shadow-[var(--shadow)]">
-      <div className="flex gap-4">
-        {info.thumbnail && (
-          <img
-            src={info.thumbnail}
-            alt={info.title}
-            loading="lazy"
-            className="h-20 w-20 shrink-0 rounded-lg object-cover"
-          />
-        )}
-        <p className="text-sm leading-relaxed text-muted">{info.extract}</p>
-      </div>
+      <p className="text-sm leading-relaxed text-muted">{info.extract}</p>
 
       {info.conservation && <ConservationBar conservation={info.conservation} />}
 

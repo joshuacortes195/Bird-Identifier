@@ -4,6 +4,7 @@ import { Dropzone } from "./components/Dropzone";
 import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
 import { ImagePreview } from "./components/ImagePreview";
+import { OtherPredictions } from "./components/OtherPredictions";
 import { RecentUploads, type RecentItem } from "./components/RecentUploads";
 import { ResultsPanel } from "./components/ResultsPanel";
 import { ErrorState, LoadingState } from "./components/States";
@@ -44,7 +45,7 @@ export default function App() {
           </div>
         ) : (
           <div className="grid gap-5 lg:grid-cols-2 lg:gap-6">
-            <div className="lg:sticky lg:top-4 lg:self-start">
+            <div className="space-y-5 lg:self-start">
               {p.prepared && (
                 <ImagePreview
                   previewUrl={p.prepared.previewUrl}
@@ -53,6 +54,9 @@ export default function App() {
                   downscaled={p.prepared.downscaled}
                   onReset={p.reset}
                 />
+              )}
+              {p.status === "success" && p.result && (
+                <OtherPredictions predictions={p.result.predictions.slice(1)} />
               )}
             </div>
 
