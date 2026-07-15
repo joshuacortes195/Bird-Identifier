@@ -1,25 +1,7 @@
-import type { Prediction, PredictResponse } from "../api/types";
-import { AlertIcon, CheckIcon, ExternalLinkIcon } from "../icons";
+import type { PredictResponse } from "../api/types";
+import { AlertIcon, CheckIcon } from "../icons";
 import { ConfidenceBar, formatPct } from "./ConfidenceBar";
-
-function speciesInfoUrl(p: Prediction): string {
-  const q = encodeURIComponent(p.scientific_name || p.common_name);
-  return `https://en.wikipedia.org/wiki/Special:Search?search=${q}`;
-}
-
-function InfoLink({ p }: { p: Prediction }) {
-  return (
-    <a
-      href={speciesInfoUrl(p)}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="inline-flex items-center gap-1 rounded text-sm font-medium text-primary hover:underline"
-    >
-      Learn more
-      <ExternalLinkIcon width={15} height={15} />
-    </a>
-  );
-}
+import { SpeciesInfo } from "./SpeciesInfo";
 
 export function ResultsPanel({ result }: { result: PredictResponse }) {
   const [top, ...rest] = result.predictions;
@@ -58,10 +40,10 @@ export function ResultsPanel({ result }: { result: PredictResponse }) {
         <div className="mt-3">
           <ConfidenceBar value={top.confidence} emphasis />
         </div>
-        <div className="mt-3">
-          <InfoLink p={top} />
-        </div>
       </div>
+
+      {/* Reference info for the top match — summary, conservation status, source link */}
+      <SpeciesInfo commonName={top.common_name} />
 
       {/* Runner-up predictions */}
       {rest.length > 0 && (
