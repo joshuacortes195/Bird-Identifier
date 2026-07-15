@@ -43,6 +43,8 @@ class ServeConfig:
     model_path: str | None = None
     taxonomy_path: str = "configs/taxonomy/birds.yaml"
     allow_stub: bool = False
+    # Interactive API docs (/docs, /redoc, /openapi.json) leak the full schema; off in prod.
+    enable_docs: bool = False
 
     top_k: int = 5
     low_confidence_threshold: float = 0.35
@@ -85,6 +87,7 @@ class ServeConfig:
             model_path=default_model,
             taxonomy_path=os.getenv("WILDLIFE_TAXONOMY", "configs/taxonomy/birds.yaml"),
             allow_stub=_env_bool("WILDLIFE_ALLOW_STUB", False),
+            enable_docs=_env_bool("WILDLIFE_ENABLE_DOCS", False),
             top_k=_env_int("WILDLIFE_TOP_K", 5),
             low_confidence_threshold=_env_float("WILDLIFE_LOW_CONF", 0.35),
             max_upload_bytes=_env_int("WILDLIFE_MAX_UPLOAD_BYTES", 10 * 1024 * 1024),

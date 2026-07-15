@@ -177,3 +177,33 @@ def test_production_refuses_stub_without_flag():
     app = create_app(config=cfg)  # real build path, no injected predictor
     with pytest.raises(FileNotFoundError), TestClient(app):
         pass
+
+
+def test_docs_disabled_by_default():
+    # Schema-revealing endpoints must be off unless explicitly enabled (security hardening).
+    with _client() as client:
+        assert client.get("/openapi.json").status_code == 404
+        assert client.get("/docs").status_code == 404
+
+
+def test_docs_enabled_when_configured():
+    cfg = ServeConfig(allow_stub=True, rate_limit_per_minute=0, enable_docs=True)
+    app = create_app(config=cfg, predictor=StubPredictor(_taxonomy()))
+    with TestClient(app) as client:
+        assert client.get("/openapi.json").status_code == 200
+
+
+def test_decompression_bomb_rejected(monkeypatch):
+    # A crafted image that decodes to a huge canvas must be refused, not crash the worker.
+    from PIL import Image as _Image
+
+    import wildlife.serve.app as app_module
+
+    def _boom(_data: bytes):
+        raise _Image.DecompressionBombError("image is too large")
+
+    monkeypatch.setattr(app_module, "load_image_from_bytes", _boom)
+    with _client() as client:
+        r = client.post("/predict", files={"file": ("bomb.png", _png_bytes(), "image/png")})
+        assert r.status_code == 413
+        assert r.json()["error"]["code"] == "image_too_large"
