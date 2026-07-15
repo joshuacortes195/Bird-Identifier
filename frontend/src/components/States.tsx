@@ -6,7 +6,7 @@ const EXPECTED_SECONDS = 30;
 /** Waiting screen shown while the model runs. The API is hosted on a free CPU tier, so a
  *  request takes ~30 s (and longer on a cold start), so we set expectations clearly and keep
  *  a live timer + progress bar so it never feels frozen. */
-export function LoadingState() {
+export function LoadingState({ onCancel }: { onCancel?: () => void }) {
   const [elapsed, setElapsed] = useState(0);
 
   useEffect(() => {
@@ -43,6 +43,16 @@ export function LoadingState() {
         </div>
         <p className="mt-2 font-mono text-xs tabular-nums text-muted">{elapsed}s</p>
       </div>
+
+      {onCancel && (
+        <button
+          type="button"
+          onClick={onCancel}
+          className="mt-5 inline-flex h-9 items-center rounded-lg border border-border bg-surface px-4 text-sm font-medium text-muted transition-colors hover:bg-surface-2 hover:text-fg"
+        >
+          Cancel
+        </button>
+      )}
     </div>
   );
 }
