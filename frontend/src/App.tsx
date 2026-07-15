@@ -64,7 +64,7 @@ export default function App() {
             </div>
 
             <div>
-              {p.status === "loading" && <LoadingState />}
+              {p.status === "loading" && <LoadingState onCancel={p.reset} />}
               {p.status === "error" && p.error && (
                 <ErrorState code={p.error.code} message={p.error.message} onRetry={p.reset} />
               )}
