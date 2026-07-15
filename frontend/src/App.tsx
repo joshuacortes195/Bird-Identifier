@@ -47,8 +47,10 @@ export default function App() {
             <RecentUploads items={recents} onSelect={p.selectFile} />
           </div>
         ) : (
+          // Mobile stacks in DOM order (image, best match, other possibilities);
+          // desktop places image + runner-ups in the left column, results on the right.
           <div className="grid gap-5 lg:grid-cols-2 lg:gap-6">
-            <div className="space-y-5 lg:self-start">
+            <div className="lg:col-start-1 lg:row-start-1">
               {p.prepared && (
                 <ImagePreview
                   previewUrl={p.prepared.previewUrl}
@@ -58,18 +60,21 @@ export default function App() {
                   onReset={p.reset}
                 />
               )}
-              {p.status === "success" && p.result && (
-                <OtherPredictions predictions={p.result.predictions.slice(1)} />
-              )}
             </div>
 
-            <div>
+            <div className="lg:col-start-2 lg:row-span-2 lg:row-start-1">
               {p.status === "loading" && <LoadingState onCancel={p.reset} />}
               {p.status === "error" && p.error && (
                 <ErrorState code={p.error.code} message={p.error.message} onRetry={p.reset} />
               )}
               {p.status === "success" && p.result && <ResultsPanel result={p.result} />}
             </div>
+
+            {p.status === "success" && p.result && (
+              <div className="lg:col-start-1 lg:row-start-2 lg:self-start">
+                <OtherPredictions predictions={p.result.predictions.slice(1)} />
+              </div>
+            )}
           </div>
         )}
       </main>

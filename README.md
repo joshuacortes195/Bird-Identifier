@@ -1,5 +1,10 @@
 # Wildlife Classifier — Fine-Grained Bird Species Identification
 
+**Live demo → <https://bird-identifier-zeta.vercel.app/>**
+(React on Vercel → FastAPI + ONNX Runtime on Render's free tier — the first request
+after idle takes ~30–60 s while the free instance wakes; warm requests ~25 s on
+0.1 CPU. The UI sets that expectation honestly.)
+
 An end-to-end ML + full-stack project: train a fine-grained North American **bird**
 species classifier, evaluate it rigorously (including on the author's own wildlife
 photos as an out-of-distribution test), optimize it for fast inference, and serve it
