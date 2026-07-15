@@ -134,7 +134,15 @@ def create_app(config: ServeConfig | None = None, predictor: Predictor | None = 
         yield
         app.state.predictor = None
 
-    app = FastAPI(title="Wildlife Classifier API", version="0.1.0", lifespan=lifespan)
+    app = FastAPI(
+        title="Wildlife Classifier API",
+        version="0.1.0",
+        lifespan=lifespan,
+        # Schema-revealing docs endpoints are disabled unless explicitly enabled (dev only).
+        docs_url="/docs" if cfg.enable_docs else None,
+        redoc_url="/redoc" if cfg.enable_docs else None,
+        openapi_url="/openapi.json" if cfg.enable_docs else None,
+    )
     app.state.config = cfg
     app.state.limiter = RateLimiter(cfg.rate_limit_per_minute)
 
@@ -160,7 +168,14 @@ def create_app(config: ServeConfig | None = None, predictor: Predictor | None = 
         return pred
 
     def rate_limit(request: Request) -> None:
-        client = request.client.host if request.client else "unknown"
+        # Behind Render/Cloudflare, request.client.host is the proxy — keying on it would
+        # throttle all users collectively. Prefer the left-most X-Forwarded-For (the origin
+        # client). NB: XFF is client-spoofable, so this is availability hygiene, not a hard
+        # security control; abuse protection ultimately relies on the platform edge.
+        xff = request.headers.get("x-forwarded-for")
+        client = xff.split(",")[0].strip() if xff else (
+            request.client.host if request.client else "unknown"
+        )
         request.app.state.limiter.check(client)
 
     @app.get("/health", response_model=HealthResponse)
@@ -211,6 +226,10 @@ def create_app(config: ServeConfig | None = None, predictor: Predictor | None = 
 
         try:
             img = load_image_from_bytes(data)
+        except Image.DecompressionBombError as exc:
+            raise APIError(
+                413, "image_too_large", "Image dimensions are too large to process."
+            ) from exc
         except (UnidentifiedImageError, OSError, ValueError) as exc:
             raise APIError(422, "invalid_image", "Could not decode the file as an image.") from exc
 

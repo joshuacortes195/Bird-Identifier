@@ -10,6 +10,12 @@ from pathlib import Path
 
 from PIL import Image, ImageOps
 
+# Decompression-bomb guard: a tiny crafted file (e.g. a PNG) can declare enormous pixel
+# dimensions and blow up memory on decode — dangerous on a 512 MB free instance, and it
+# happens *before* any server-side downscale. Cap total pixels so Pillow raises
+# DecompressionBombError well before that. 24 MP comfortably covers real phone photos.
+Image.MAX_IMAGE_PIXELS = 24_000_000
+
 _HEIF_REGISTERED = False
 
 
