@@ -1,0 +1,19 @@
+# Render Blueprint — one-click backend deploy (Phase 11).
+# In Render: New → Blueprint → connect this repo. It provisions the API from the Dockerfile.
+# After the frontend is live, set WILDLIFE_CORS_ORIGINS to its origin (Render dashboard → Env).
+services:
+  - type: web
+    name: bird-identifier-api
+    runtime: docker
+    plan: free # 512 MB RAM; serves the 85 MB int8 model (fp32 would OOM here)
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      # Locked to the deployed frontend once it exists. Value set in the dashboard (sync:false
+      # keeps it out of git). Until then the API still answers non-browser (curl) requests.
+      - key: WILDLIFE_CORS_ORIGINS
+        sync: false
+      # Optional tuning (defaults are fine): predictions returned, low-confidence threshold.
+      - key: WILDLIFE_TOP_K
+        value: "5"

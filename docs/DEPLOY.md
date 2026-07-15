@@ -14,7 +14,19 @@ both COPYed in.
 2. Set Space secrets/vars: `WILDLIFE_CORS_ORIGINS=https://<your-site>.netlify.app`.
 3. It serves on port 8000 over HTTPS at `https://<user>-<space>.hf.space`.
 
-**Render / Railway / Fly.io** — same image; set the same env vars. Ensure HTTPS (required for
+**Render (free tier, no credit card)** — the current target. `render.yaml` is a Blueprint:
+in Render, **New → Blueprint → connect this repo**; it provisions a Docker web service from
+the `Dockerfile`, on the **Free** plan, with `/health` as the health check.
+- The image bakes in the **85 MB int8 ONNX** model (committed to the repo, under GitHub's
+  100 MB limit). The 353 MB fp32 model would OOM Render's 512 MB free RAM, so int8 is used
+  (slower — ~500 ms/img — but fits comfortably).
+- The container binds to Render's injected `$PORT` (see `Dockerfile` CMD).
+- After the frontend is live, set **`WILDLIFE_CORS_ORIGINS`** to its origin in the Render
+  dashboard (Environment tab) and redeploy.
+- Free-tier caveat: the service **sleeps after ~15 min idle**; the first request then takes
+  ~30–60 s to wake + load the model. Warm requests are ~500 ms. Note this in the README.
+
+**Railway / Fly.io** — same image; set the same env vars. Ensure HTTPS (required for
 mobile camera access and to avoid mixed-content from the HTTPS frontend).
 
 Key env vars (see `docs/API.md` for all): `WILDLIFE_MODEL_PATH`, `WILDLIFE_TAXONOMY`,

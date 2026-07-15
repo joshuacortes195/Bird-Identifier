@@ -1,0 +1,20 @@
+# Keep the build context small. Only the int8 ONNX model is baked into the serving image;
+# everything else heavy (fp32 model, training checkpoints, data, node_modules) is excluded.
+.git
+.venv
+data/
+my_photos/
+outputs/checkpoints/
+outputs/ablations/
+outputs/eval/
+outputs/ood/
+outputs/serving/model.onnx
+frontend/node_modules/
+frontend/dist/
+**/__pycache__/
+**/*.pyc
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+docs/
+tests/
