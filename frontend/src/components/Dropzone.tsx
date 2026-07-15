@@ -1,5 +1,5 @@
 import { useId, useRef, useState } from "react";
-import { CameraIcon, UploadIcon } from "../icons";
+import { UploadIcon } from "../icons";
 
 interface DropzoneProps {
   onSelect: (file: File) => void;
@@ -10,7 +10,6 @@ const ACCEPTED = "image/*,.heic,.heif";
 
 export function Dropzone({ onSelect, disabled }: DropzoneProps) {
   const fileInput = useRef<HTMLInputElement>(null);
-  const cameraInput = useRef<HTMLInputElement>(null);
   const [dragging, setDragging] = useState(false);
   const [hint, setHint] = useState<string | null>(null);
   const descId = useId();
@@ -51,11 +50,11 @@ export function Dropzone({ onSelect, disabled }: DropzoneProps) {
       </span>
       <h2 className="font-serif text-2xl font-semibold tracking-tight">Identify a bird</h2>
       <p id={descId} className="mx-auto mt-2 max-w-sm text-sm text-muted">
-        Drop a photo here, choose one from your device, or use your camera. Your image is sent
-        only to the classifier and isn't stored.
+        Drop a photo here or choose one from your device. On a phone this opens your Photos.
+        Your image is sent only to the classifier and isn't stored.
       </p>
 
-      <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
+      <div className="mt-6 flex justify-center">
         <button
           type="button"
           disabled={disabled}
@@ -64,15 +63,6 @@ export function Dropzone({ onSelect, disabled }: DropzoneProps) {
         >
           <UploadIcon width={20} height={20} />
           Choose photo
-        </button>
-        <button
-          type="button"
-          disabled={disabled}
-          onClick={() => cameraInput.current?.click()}
-          className="inline-flex h-12 min-w-44 items-center justify-center gap-2 rounded-xl border border-border bg-surface px-5 font-medium text-fg transition-colors hover:bg-surface-2 disabled:cursor-not-allowed sm:hidden"
-        >
-          <CameraIcon width={20} height={20} />
-          Take photo
         </button>
       </div>
 
@@ -86,14 +76,6 @@ export function Dropzone({ onSelect, disabled }: DropzoneProps) {
         ref={fileInput}
         type="file"
         accept={ACCEPTED}
-        className="sr-only"
-        onChange={(e) => handleFiles(e.target.files)}
-      />
-      <input
-        ref={cameraInput}
-        type="file"
-        accept="image/*"
-        capture="environment"
         className="sr-only"
         onChange={(e) => handleFiles(e.target.files)}
       />

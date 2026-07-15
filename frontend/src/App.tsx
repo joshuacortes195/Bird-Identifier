@@ -51,11 +51,6 @@ export default function App() {
                   filename={p.prepared.filename}
                   sizeLabel={formatBytes(p.prepared.blob.size)}
                   downscaled={p.prepared.downscaled}
-                  gradcamPng={p.result?.gradcam_png_base64 ?? null}
-                  gradcamRequested={p.gradcamRequested}
-                  gradcamLoading={p.gradcamLoading}
-                  gradcamSupported={p.status === "success"}
-                  onRequestGradcam={p.requestGradcam}
                   onReset={p.reset}
                 />
               )}
