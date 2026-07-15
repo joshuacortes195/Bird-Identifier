@@ -22,6 +22,9 @@ export default function App() {
       thumbUrl: URL.createObjectURL(prepared.blob),
       commonName: result.top_prediction.common_name,
       confidence: result.top_prediction.confidence,
+      file: new File([prepared.blob], prepared.filename, {
+        type: prepared.blob.type || "image/jpeg",
+      }),
     };
     setRecents((prev) => {
       const combined = [item, ...prev];
@@ -41,7 +44,7 @@ export default function App() {
         {!hasImage ? (
           <div className="pt-4">
             <Dropzone onSelect={p.selectFile} disabled={p.status === "preparing"} />
-            <RecentUploads items={recents} />
+            <RecentUploads items={recents} onSelect={p.selectFile} />
           </div>
         ) : (
           <div className="grid gap-5 lg:grid-cols-2 lg:gap-6">
