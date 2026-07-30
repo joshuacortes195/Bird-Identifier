@@ -1,60 +1,76 @@
-# Phase 11 — Deployment
+# Deployment
 
-Two pieces: the **API** (Dockerized, on a CPU host) and the **frontend** (static, on Netlify).
-Everything is wired; this is gated only on your hosting accounts.
+Two pieces, both live:
 
-## Backend API (Docker → CPU host)
+| Piece | Host | URL |
+|-------|------|-----|
+| Frontend (static React/Vite build) | Vercel | https://bird-identifier-zeta.vercel.app |
+| Inference API (Dockerized FastAPI) | Render | https://bird-identifier-api.onrender.com |
 
-The lean, torch-free image (`Dockerfile`) serves the ONNX model. It expects
-`outputs/serving/model.onnx` (from `scripts/export.py`) and `configs/taxonomy/birds.yaml`,
-both COPYed in.
+Both auto-deploy from `main` on push.
 
-**Hugging Face Spaces (Docker)** — free tier, simplest:
-1. Create a Docker Space, push this repo (or the built image).
-2. Set Space secrets/vars: `WILDLIFE_CORS_ORIGINS=https://<your-site>.netlify.app`.
-3. It serves on port 8000 over HTTPS at `https://<user>-<space>.hf.space`.
+> **The two URLs are coupled.** The frontend's CSP (`frontend/vercel.json`) whitelists the
+> API origin in `connect-src`, and the API's `WILDLIFE_CORS_ORIGINS` whitelists the frontend
+> origin. Changing either host means updating both sides — a CSP mismatch shows up in the
+> browser as requests that fail before they're ever sent, which looks like the API is down.
 
-**Render (free tier, no credit card)** — the current target. `render.yaml` is a Blueprint:
-in Render, **New → Blueprint → connect this repo**; it provisions a Docker web service from
-the `Dockerfile`, on the **Free** plan, with `/health` as the health check.
-- The image bakes in the **85 MB int8 ONNX** model (committed to the repo, under GitHub's
-  100 MB limit). The 353 MB fp32 model would OOM Render's 512 MB free RAM, so int8 is used
-  (slower — ~500 ms/img — but fits comfortably).
-- The container binds to Render's injected `$PORT` (see `Dockerfile` CMD).
-- After the frontend is live, set **`WILDLIFE_CORS_ORIGINS`** to its origin in the Render
-  dashboard (Environment tab) and redeploy.
-- Free-tier caveat: the service **sleeps after ~15 min idle**; the first request then takes
-  ~30–60 s to wake + load the model. Warm requests are ~500 ms. Note this in the README.
+## Backend API (Render)
 
-**Railway / Fly.io** — same image; set the same env vars. Ensure HTTPS (required for
-mobile camera access and to avoid mixed-content from the HTTPS frontend).
+`render.yaml` is a Blueprint: in Render, **New → Blueprint → connect this repo**. It
+provisions a Docker web service from the `Dockerfile` on the **Free** plan with `/health`
+as the health check and auto-deploy on.
 
-Key env vars (see `docs/API.md` for all): `WILDLIFE_MODEL_PATH`, `WILDLIFE_TAXONOMY`,
-`WILDLIFE_CORS_ORIGINS`, `WILDLIFE_RATE_LIMIT`.
+- The image is **torch-free by design** — ONNX Runtime + Pillow + NumPy only — which keeps
+  it small enough for free-tier CPU hosts.
+- It bakes in the **85 MB int8 ONNX** model (`outputs/serving/model.int8.onnx`, committed,
+  under GitHub's 100 MB limit). The 353 MB fp32 model would OOM Render's 512 MB free RAM,
+  so int8 is used: slower (~500 ms/img warm) but it fits.
+- The container binds Render's injected `$PORT`, falling back to 8000 locally (see the
+  `Dockerfile` CMD).
+- **Free-tier cold start:** the service sleeps after ~15 min idle, and the first request
+  then takes ~30–60 s to wake and load the model. The frontend has a waiting screen built
+  for exactly this.
+
+Environment variables to set in the Render dashboard (Environment tab):
+
+| Variable | Value | Notes |
+|----------|-------|-------|
+| `WILDLIFE_CORS_ORIGINS` | the deployed frontend origin | `sync: false` in the Blueprint, so it is deliberately not in git |
+| `WILDLIFE_TOP_K` | `5` | set by the Blueprint; number of predictions returned |
+
+`WILDLIFE_MODEL_PATH` and `WILDLIFE_TAXONOMY` are baked into the image and need no override.
+See `docs/API.md` for the full env var table and defaults.
 
 ```bash
-# Build & run the API image locally to sanity-check before deploying:
+# Sanity-check the API image locally before deploying:
 docker build -t bird-api .
 docker run -p 8000:8000 -e WILDLIFE_CORS_ORIGINS=http://localhost:5173 bird-api
+curl localhost:8000/health
 ```
 
-## Frontend (Netlify)
+## Frontend (Vercel)
 
-`netlify.toml` sets base `frontend/`, build `npm run build`, publish `dist`, SPA fallback.
+| Setting | Value |
+|---------|-------|
+| Root directory | `frontend` |
+| Build command | `npm run build` (`tsc -b && vite build`) |
+| Output directory | `dist` |
 
-1. Connect the GitHub repo in Netlify (auto-deploy on push).
-2. Set environment variable **`VITE_API_BASE_URL`** = your deployed API URL
-   (e.g. `https://<user>-<space>.hf.space`).
-3. Deploy. To repoint at a new API later, change that one variable and redeploy.
+Set **`VITE_API_BASE_URL`** to the deployed API URL under the project's Environment
+Variables. To repoint at a different API later, change that variable *and* the `connect-src`
+entry in `frontend/vercel.json`, then redeploy.
+
+`frontend/vercel.json` also supplies the security headers — CSP, `X-Frame-Options`,
+`X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`.
 
 ## Cross-device smoke test (the acceptance bar)
 
-From a phone on **cellular** (not just Wi-Fi): open the Netlify URL → upload/shoot a bird →
-get top-k + Grad-CAM. Note the free-tier cold-start latency honestly in the README.
+From a phone on **cellular** (not just Wi-Fi): open the frontend URL → upload or shoot a
+bird → get top-k + Grad-CAM. Expect the cold-start delay on the first request.
 
-## What I need from you
+## Alternative API hosts
 
-- A host account for the API (HF Spaces / Render / Railway / Fly) — tell me which and I'll
-  finalize the config.
-- A Netlify account connected to this GitHub repo.
-- A trained checkpoint exported to `outputs/serving/model.onnx` (Phase 8).
+The same image runs anywhere that accepts a Dockerfile and injects `$PORT` — Railway,
+Fly.io, Hugging Face Spaces (Docker). Set the same env vars. HTTPS is required: mobile
+camera access needs a secure context, and an HTTP API would be blocked as mixed content
+from the HTTPS frontend.

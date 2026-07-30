@@ -49,7 +49,9 @@ npm run preview     # serve the production build locally
 - Confidence conveyed by number + bar (never color alone); low-confidence has an explicit banner.
 - Touch targets ≥44px; camera capture on mobile; screen-reader labels on icon-only controls.
 
-## Deploy (Phase 11)
+## Deploy
 
-Netlify (GitHub auto-deploy). Set `VITE_API_BASE_URL` per environment to the deployed HTTPS
-API, and lock the API's `WILDLIFE_CORS_ORIGINS` to the Netlify origin.
+Vercel (GitHub auto-deploy from `main`; root directory `frontend`, output `dist`). Set
+`VITE_API_BASE_URL` per environment to the deployed HTTPS API, and lock the API's
+`WILDLIFE_CORS_ORIGINS` to the Vercel origin. The API origin must also appear in the CSP
+`connect-src` in `vercel.json`. See `docs/DEPLOY.md`.

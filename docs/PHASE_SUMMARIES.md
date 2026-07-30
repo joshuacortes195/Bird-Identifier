@@ -346,13 +346,13 @@ as a ready tool — `python scripts/run_ablations.py` runs bbox-crop + 288px abl
 fills `results/ablation_table.md` — but the ablation table currently holds only the
 baseline reference row. AC sleep restored to default (PC may sleep normally again).
 
-**Project state: Phases 0–6, 8, 9, 10, 12 are DONE and pushed** on branch
-`phase-6-10-fullstack`. The two remaining phases both need the user:
+**Project state: Phases 0–6 and 8–12 are DONE and merged to `main`.**
+
+**Phase 11 (deploy) shipped:** the torch-free API image runs on Render (free plan, int8
+ONNX baked in) and the frontend on Vercel, both auto-deploying from `main`. See
+`docs/DEPLOY.md` for the URLs, env vars, and the CSP/CORS coupling between the two.
+
+One phase still needs the user:
 - **Phase 7 (OOD test):** ingest path is built (`docs/OOD.md`) — needs labeled photos in
   `my_photos/<species>/*.jpg`, then `python scripts/ood_eval.py`.
-- **Phase 11 (deploy):** API + frontend are deploy-ready (`docs/DEPLOY.md`, `netlify.toml`,
-  torch-free Dockerfile) — needs Netlify + a CPU API-host account (HF Spaces/Render/Fly),
-  and the model artifact transferred/regenerated on the host.
-
-Optional cleanup later: fast-forward `main` to this branch.
 
