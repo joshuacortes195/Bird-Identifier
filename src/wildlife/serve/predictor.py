@@ -86,6 +86,16 @@ def _rank(probs: np.ndarray, taxonomy: Taxonomy, top_k: int) -> list[Prediction]
     return out
 
 
+def _env_threads() -> int:
+    # how many threads the model gets, 0 lets onnx runtime pick
+    import os
+
+    try:
+        return max(0, int(os.getenv("WILDLIFE_ORT_THREADS", "0")))
+    except ValueError:
+        return 0
+
+
 class OnnxPredictor:
     """CPU ONNX Runtime inference. Torch-free; ``onnxruntime`` imported lazily."""
 
@@ -107,7 +117,17 @@ class OnnxPredictor:
 
         self.taxonomy = taxonomy
         self.pre = preprocess_cfg or PreprocessConfig()
-        self._session = ort.InferenceSession(str(model_path), providers=["CPUExecutionProvider"])
+        # caps the threads, by default it starts one per core and on a tiny free cpu they all fight and crawl
+        opts = ort.SessionOptions()
+        threads = _env_threads()
+        if threads > 0:
+            opts.intra_op_num_threads = threads
+            opts.inter_op_num_threads = 1
+        opts.execution_mode = ort.ExecutionMode.ORT_SEQUENTIAL
+        opts.graph_optimization_level = ort.GraphOptimizationLevel.ORT_ENABLE_ALL
+        self._session = ort.InferenceSession(
+            str(model_path), sess_options=opts, providers=["CPUExecutionProvider"]
+        )
         self._input_name = self._session.get_inputs()[0].name
         self.info = ModelInfo(
             name=name,

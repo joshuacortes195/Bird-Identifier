@@ -7,7 +7,8 @@ FROM python:3.11-slim
 ENV PYTHONUNBUFFERED=1 \
     PIP_NO_CACHE_DIR=1 \
     WILDLIFE_MODEL_PATH=/app/models/model.int8.onnx \
-    WILDLIFE_TAXONOMY=/app/configs/taxonomy/birds.yaml
+    WILDLIFE_TAXONOMY=/app/configs/taxonomy/birds.yaml \
+    WILDLIFE_ORT_THREADS=1
 
 WORKDIR /app
 

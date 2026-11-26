@@ -1,4 +1,5 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { getHealth } from "./api/client";
 import type { PredictResponse } from "./api/types";
 import { Dropzone } from "./components/Dropzone";
 import { Footer } from "./components/Footer";
@@ -15,6 +16,13 @@ const HISTORY_LIMIT = 8;
 
 export default function App() {
   const [recents, setRecents] = useState<RecentItem[]>([]);
+
+  // wakes the free server as soon as the page opens, so it's booting while you pick a photo
+  useEffect(() => {
+    const ctrl = new AbortController();
+    getHealth(ctrl.signal).catch(() => {});
+    return () => ctrl.abort();
+  }, []);
 
   const handleIdentified = useCallback((result: PredictResponse, prepared: PreparedImage) => {
     const item: RecentItem = {

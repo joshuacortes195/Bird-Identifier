@@ -14,6 +14,7 @@ so the ONNX backend and the dev stub are interchangeable.
 
 from __future__ import annotations
 
+import asyncio
 import logging
 import sys
 import time
@@ -21,6 +22,7 @@ from collections import defaultdict, deque
 from contextlib import asynccontextmanager
 
 from fastapi import Depends, FastAPI, File, Form, Request, UploadFile
+from fastapi.concurrency import run_in_threadpool
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from PIL import Image, UnidentifiedImageError
@@ -31,6 +33,9 @@ from wildlife.serve.config import ServeConfig
 from wildlife.serve.predictor import Predictor, build_predictor
 
 logger = logging.getLogger("wildlife.serve")
+
+# one photo at a time, two at once would double the memory
+_infer_lock = asyncio.Lock()
 
 
 def _configure_logging() -> None:
@@ -173,8 +178,10 @@ def create_app(config: ServeConfig | None = None, predictor: Predictor | None = 
         # client). NB: XFF is client-spoofable, so this is availability hygiene, not a hard
         # security control; abuse protection ultimately relies on the platform edge.
         xff = request.headers.get("x-forwarded-for")
-        client = xff.split(",")[0].strip() if xff else (
-            request.client.host if request.client else "unknown"
+        client = (
+            xff.split(",")[0].strip()
+            if xff
+            else (request.client.host if request.client else "unknown")
         )
         request.app.state.limiter.check(client)
 
@@ -236,9 +243,13 @@ def create_app(config: ServeConfig | None = None, predictor: Predictor | None = 
         img = _downscale(img, cfg.max_resolution)
 
         k = top_k if top_k and top_k > 0 else cfg.top_k
-        t0 = time.perf_counter()
-        preds = pred.predict(img, top_k=k)
-        inference_ms = (time.perf_counter() - t0) * 1000.0
+        # runs the model on a side thread so /health still answers while it works,
+        # otherwise the host thinks the server died and restarts it mid request.
+        # the lock keeps it to one photo at a time so memory stays under the cap
+        async with _infer_lock:
+            t0 = time.perf_counter()
+            preds = await run_in_threadpool(pred.predict, img, top_k=k)
+            inference_ms = (time.perf_counter() - t0) * 1000.0
 
         if not preds:
             raise APIError(500, "empty_prediction", "Model returned no predictions.")
